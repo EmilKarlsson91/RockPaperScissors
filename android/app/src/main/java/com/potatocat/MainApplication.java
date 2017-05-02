@@ -9,9 +9,10 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
-import com.facebook.FacebookSdk;    // think this is obsolet
+// Facebook imports
+import com.facebook.FacebookSdk;    // think this is obsolete
 import com.facebook.CallbackManager;
-import com.facebook.appevents.AppEventsLogger;  // think this is obsolet
+import com.facebook.appevents.AppEventsLogger;  // think this is obsolete
 
 import java.util.Arrays;
 import java.util.List;
