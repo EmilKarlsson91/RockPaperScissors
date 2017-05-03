@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {
   View,
   Text,
+  Modal,
   Linking
 } from 'react-native';
 import RPSDetails from '../containers/rps-details';
