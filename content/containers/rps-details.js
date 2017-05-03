@@ -8,11 +8,11 @@ import {
 
 class RPSDetails extends Component {
   render(){
-
     if(!this.props.activeRPSReducer){
       return(
         <View>
-          <Text>Bilden Hittas inte</Text>
+          <Image style={{height:200, width:200}} source={this.props.rpsReducers[1].img} />
+          <Text>{this.props.rpsReducers[1].name}</Text>
         </View>
       );
     }
@@ -28,7 +28,8 @@ class RPSDetails extends Component {
 
 function mapStateToProps(state){
   return {
-    activeRPSReducer: state.activeRPSReducer
+    activeRPSReducer: state.activeRPSReducer,
+    rpsReducers: state.rpsReducers
   };
 }
 
