@@ -22,7 +22,7 @@ export default class App extends Component{
 
   render(){
     return(
-      <View style={{margin:100, alignItems: 'center'}}>
+      <View style={{padding:100, alignItems: 'center', backgroundColor: 'transparent'}}>
         <RPSDetails />
         <RPSList />
         <MessengerBtn />
