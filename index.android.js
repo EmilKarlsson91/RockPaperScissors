@@ -16,7 +16,7 @@ import Main from './main';
 export default class PotatoCat extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         <Main />
       </View>
     );

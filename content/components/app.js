@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import RPSDetails from '../containers/rps-details';
 import RPSList from '../containers/rps-list';
+import MessengerBtn from '../containers/messengerSendButton'
 
 export default class App extends Component{
 
@@ -24,6 +25,7 @@ export default class App extends Component{
       <View style={{margin:100, alignItems: 'center'}}>
         <RPSDetails />
         <RPSList />
+        <MessengerBtn />
       </View>
     );
   }

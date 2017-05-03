@@ -13,7 +13,7 @@ const store = createStore(allReducers);
 export default class Main extends Component {
   render(){
     return(
-      <Provider store={store} >
+      <Provider store={store} style={{ backgroundColor: 'rgba(52, 52, 52, 0.3)'}} >
         <App />
       </Provider>
     );
