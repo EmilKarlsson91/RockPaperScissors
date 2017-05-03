@@ -11,15 +11,15 @@ import MessengerBtn from '../containers/messengerSendButton'
 
 export default class App extends Component{
 
-  // componentDidMount(){
-  //   var url = Linking.getInitialURL().then((url) => {
-  //     if(url){
-  //       alert('My name is URL');
-  //     } else {
-  //       alert('My name is NOT URL');
-  //     }
-  //   });
-  // }
+  componentDidMount(){
+    var url = Linking.getInitialURL().then((url) => {
+      if(url){
+        alert('My name is URL');
+      } else {
+        alert('My name is NOT URL');
+      }
+    });
+  }
 
   render(){
     return(

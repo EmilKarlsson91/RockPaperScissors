@@ -11,7 +11,7 @@ class MessengerBtn extends Component {
     super(props);
     var shareContent = {
       contentType: 'link',
-      contentUrl: 'http://google.com'
+      contentUrl: 'http://www.example.com/gizmos'
     };
     this.state = {shareContent: shareContent}
   }
