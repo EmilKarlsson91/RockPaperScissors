@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import RPSDetails from '../containers/rps-details';
 import RPSList from '../containers/rps-list';
-import MessengerBtn from '../containers/messengerSendButton'
+import MessengerBtn from '../containers/messenger-send-button'
 
 export default class App extends Component{
 
