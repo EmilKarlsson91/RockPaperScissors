@@ -27,15 +27,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <!-- Accepts URIs that begin with "http://www.example.com/gizmos” -->
-                <data android:scheme="http"
+                <!-- Accepts URIs that begin with "http://www.potatocat.com/kluns” -->
+            <!--<data android:scheme="http"
                     android:host="www.potatocat.com"
-                    android:pathPrefix="/app" />
+                    android:pathPrefix="/kluns" /> -->
                 <!-- note that the leading "/" is required for pathPrefix-->
-                <!-- Accepts URIs that begin with "example://gizmos” -->
-                <data android:scheme="potatocat"
-                    android:host="app" />
-
+                <!-- Accepts URIs that begin with "potatocat://kluns” -->
+                <data android:scheme="potatocat" />
+                <data android:host="rock" />
+                <data android:host="paper" />
+                <data android:host="scissors"/>
             </intent-filter>
         </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />

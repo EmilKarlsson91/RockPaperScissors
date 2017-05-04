@@ -14,7 +14,20 @@ export default class App extends Component{
   componentDidMount(){
     var url = Linking.getInitialURL().then((url) => {
       if(url){
-        alert('My name is URL');
+        // alert(url);
+          var kluns = url.substring(12, 13);
+
+        switch(kluns){
+          case 'r':
+            alert('Rock!');
+            break;
+          case 'p':
+            alert('Paper!');
+            break;
+          case 's':
+              alert('Scissors!');
+              break;
+        }
       } else {
         alert('My name is NOT URL');
       }
