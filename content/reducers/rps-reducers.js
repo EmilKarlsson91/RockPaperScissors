@@ -9,17 +9,20 @@ export default function (){
     {
       id: 0,
       name: 'Rock',
-      img: imgRock
+      img: imgRock,
+      url: 'https://rockpaperscissor.app.link/Q6Jb1oc3RC'
     },
     {
       id: 1,
       name: 'Paper',
-      img: imgPaper
+      img: imgPaper,
+      url: 'https://rockpaperscissor.app.link/RdAqYj2bSC'
     },
     {
       id: 2,
       name: 'Scissor',
-      img: imgScissor
+      img: imgScissor,
+      url: 'https://rockpaperscissor.app.link/nayj0sdcSC'
     }
   ]
 }

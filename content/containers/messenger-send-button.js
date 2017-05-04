@@ -9,14 +9,22 @@ class MessengerBtn extends Component {
 
   constructor(props){
     super(props);
-    var shareContent = {
-      contentType: 'link',
-      contentUrl: 'http://www.potatocat.com/app'
-    };
+    if(!this.props.activeRPSReducer){
+      var shareContent = {
+        contentType: 'link',
+        contentUrl: 'http://google.com'
+      };
+    }else{
+      var shareContent = {
+        contentType: 'link',
+        contentUrl: this.props.activeRPSReducer.url
+      };
+    }
     this.state = {shareContent: shareContent}
   }
 
   render(){
+
     return(
       <View style={{marginTop:200}}>
         <SendButton shareContent={this.state.shareContent}/>
