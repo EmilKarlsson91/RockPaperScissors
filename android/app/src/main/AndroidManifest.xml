@@ -37,7 +37,6 @@
                 <data android:host="rock" />
                 <data android:host="paper" />
                 <data android:host="scissors"/>
-
             </intent-filter>
         </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />

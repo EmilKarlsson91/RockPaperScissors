@@ -19,13 +19,13 @@ export default class App extends Component{
 
         switch(kluns){
           case 'r':
-            alert(kluns);
+            alert('Rock!');
             break;
           case 'p':
-            alert(kluns);
+            alert('Paper!');
             break;
           case 's':
-              alert(kluns);
+              alert('Scissors!');
               break;
         }
       } else {
