@@ -26,7 +26,7 @@ class MessengerBtn extends Component {
   render(){
 
     return(
-      <View style={{marginTop:200}}>
+      <View style={{marginTop:150}}>
         <SendButton shareContent={this.state.shareContent}/>
       </View>
     );

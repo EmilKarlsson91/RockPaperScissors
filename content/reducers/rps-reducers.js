@@ -1,8 +1,8 @@
 import React from 'react';
 
-var imgRock = require('../resources/Rosa.png');
-var imgPaper = require('../resources/Snor.png');
-var imgScissor = require('../resources/Pappelsin.png');
+var imgRock = require('../resources/RockWhite.jpg');
+var imgPaper = require('../resources/PaperWhite.jpg');
+var imgScissor = require('../resources/ScissorsWhite.jpg');
 
 export default function (){
   return[

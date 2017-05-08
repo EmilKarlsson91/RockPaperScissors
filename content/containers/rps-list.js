@@ -15,7 +15,7 @@ class RPSList extends Component{
     return this.props.rpsReducers.map((rps) => {
       return(
         <TouchableNativeFeedback key={rps.id} onPress={() => this.props.selectedRPS(rps)}>
-          <Image style={{height: 100, width: 100}} source={rps.img} />
+          <Image style={{height: 100, width: 100, margin: 10, borderWidth: 1, borderRadius: 5}} source={rps.img} />
         </TouchableNativeFeedback>
       );
     });
