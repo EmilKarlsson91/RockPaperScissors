@@ -11,10 +11,12 @@ class MessengerBtn extends Component {
     super(props);
     var shareContent = {
       contentType: 'link',
-      contentUrl: 'http://www.potatocat.com/app'
+      contentUrl: 'https://rockpaperscissor.app.link/nayj0sdcSC'
     };
     this.state = {shareContent: shareContent}
   }
+
+
 
   render(){
     return(
