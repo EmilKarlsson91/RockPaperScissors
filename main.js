@@ -16,11 +16,11 @@ export default class Main extends Component {
   render(){
     return(
       <Provider store={store}>
-        <Image source={require('./content/resources/background-image.jpg')} style={styles.backgroundImage}>
-          <View>
-            <App />
-          </View>
-        </Image>
+        {/* <Image source={require('./content/resources/background-image.jpg')} style={styles.backgroundImage}> */}
+        <View>
+          <App />
+        </View>
+        {/* </Image> */}
       </Provider>
     );
   }

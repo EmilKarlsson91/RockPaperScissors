@@ -9,9 +9,17 @@ class MessengerBtn extends Component {
 
   constructor(props){
     super(props);
-    var shareContent = {
+      var shareContent = {
+        contentType: 'link',
+        contentUrl: 'http://google.com'
+      };
+    this.state = {shareContent: shareContent}
+  }
+  componentDidUpdate(){
+    shareContent = {
       contentType: 'link',
-      contentUrl: 'https://rockpaperscissor.app.link/nayj0sdcSC'
+
+      contentUrl: this.props.activeRPSReducer.url
     };
     this.state = {shareContent: shareContent}
   }
@@ -19,8 +27,9 @@ class MessengerBtn extends Component {
 
 
   render(){
+
     return(
-      <View style={{marginTop:200}}>
+      <View style={{marginTop:150}}>
         <SendButton shareContent={this.state.shareContent}/>
       </View>
     );
