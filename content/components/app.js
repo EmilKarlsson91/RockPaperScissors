@@ -29,7 +29,7 @@ export default class App extends Component{
               break;
         }
       } else {
-        alert('My name is NOT URL');
+        // alert('My name is NOT URL');
       }
     });
   }

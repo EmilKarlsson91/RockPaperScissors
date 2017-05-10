@@ -4,14 +4,45 @@ import {
   View
 } from 'react-native';
 import FBSDK, {SendButton, LoginButton} from 'react-native-fbsdk';
+import branch from 'react-native-branch';
+
+async function branchStuff(){
+
+  let branchUniversalObject = branch.createBranchUniversalObject(
+    'content/1234',
+    {
+      contentTitel: 'CustomContentTitle',
+      metadata:{
+        user_id: '12345'
+      }
+    }
+  );
+
+  let linkProperties = {
+    feature: 'sample-feature',
+    channel: 'sample-channel'
+  }
+
+  let controlParams = {
+    '$desktop_url': 'http://desktop-url.com'
+  }
+  try{
+  let {url} = await branchUniversalObject.generateShortUrl(linkProperties, controlParams);
+  alert(url);
+}catch(eroor){
+  alert(eroor);
+}
+
+}
 
 class MessengerBtn extends Component {
 
   constructor(props){
     super(props);
+    branchStuff();
       var shareContent = {
         contentType: 'link',
-        contentUrl: 'http://google.com'
+        contentUrl: 'www.google.com'
       };
     this.state = {shareContent: shareContent}
   }
@@ -22,9 +53,8 @@ class MessengerBtn extends Component {
       contentUrl: this.props.activeRPSReducer.url
     };
     this.state = {shareContent: shareContent}
+
   }
-
-
 
   render(){
 
