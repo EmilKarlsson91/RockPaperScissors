@@ -8,13 +8,23 @@ import {
   Image
 } from 'react-native';
 import {selectedRPS} from '../actions';
+import {selectedUrl} from '../actions';
 
 class RPSList extends Component{
-
+   //Behöver göra så att man inte kan trycka på knappen innan urlen är genererad.
   _makeList(){
+    if(!this.props.urlReducers){
+      return this.props.rpsReducers.map((rps) => {
+        return(
+          <TouchableNativeFeedback key={rps.id}>
+            <Image style={{height: 100, width: 100, margin: 10, borderWidth: 1, borderRadius: 5}} source={rps.img} />
+          </TouchableNativeFeedback>
+        );
+      });
+    }
     return this.props.rpsReducers.map((rps) => {
       return(
-        <TouchableNativeFeedback key={rps.id} onPress={() => this.props.selectedRPS(rps)}>
+        <TouchableNativeFeedback key={rps.id} onPress={() => this.props.selectedRPS({rps, url: this.props.urlReducers[rps.id].payload.url})}>
           <Image style={{height: 100, width: 100, margin: 10, borderWidth: 1, borderRadius: 5}} source={rps.img} />
         </TouchableNativeFeedback>
       );
@@ -31,12 +41,15 @@ class RPSList extends Component{
 
 function mapStateToProps(state){
   return{
-    rpsReducers: state.rpsReducers
+    rpsReducers: state.rpsReducers,
+    urlReducers: state.urlReducers,
   };
 }
 
 function matchdispatchToProps(dispatch){
-  return bindActionCreators({selectedRPS: selectedRPS}, dispatch)
+  return bindActionCreators({
+    selectedRPS: selectedRPS,
+  }, dispatch)
 }
 
 export default connect(mapStateToProps, matchdispatchToProps)(RPSList);

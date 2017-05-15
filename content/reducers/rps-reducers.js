@@ -14,19 +14,19 @@ export default function (){
       id: 0,
       name: 'Rock',
       img: imgRock,
-      url: 'https://rockpaperscissor.app.link/Q6Jb1oc3RC'
+      url: ''
     },
     {
       id: 1,
       name: 'Paper',
       img: imgPaper,
-      url: 'https://rockpaperscissor.app.link/RdAqYj2bSC'
+      url: ''
     },
     {
       id: 2,
       name: 'Scissor',
       img: imgScissor,
-      url: 'https://rockpaperscissor.app.link/nayj0sdcSC'
+      url: ''
     }
   ]
 }

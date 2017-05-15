@@ -6,7 +6,7 @@ import UrlReducers from './url-reducers';
 const allReducers = combineReducers({
   rpsReducers: RPSReducers,
   activeRPSReducer: ActiveRPSReducer,
-  urlReducers: UrlReducers
+  urlReducers: UrlReducers,
 });
 
 export default allReducers;
