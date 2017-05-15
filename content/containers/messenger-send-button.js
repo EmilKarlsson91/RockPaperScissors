@@ -5,41 +5,89 @@ import {
 } from 'react-native';
 import FBSDK, {SendButton, LoginButton} from 'react-native-fbsdk';
 import branch from 'react-native-branch';
+import BranchMethods from '../../test-branch';
 
-async function branchStuff(){
 
-  let branchUniversalObject = branch.createBranchUniversalObject(
-    'content/1234',
-    {
-      contentTitel: 'CustomContentTitle',
-      metadata:{
-        user_id: '12345'
-      }
-    }
-  );
 
-  let linkProperties = {
-    feature: 'sample-feature',
-    channel: 'sample-channel'
-  }
+// let branchUniversalObject = branch.createBranchUniversalObject(
+//   'content/12345', // canonical identifier
+//   {
+//     title: 'My Content Title',
+//     contentImageUrl: 'https://example.com/mycontent-12345.png',
+//     contentDescription: 'My Content Description',
+//     metadata: {
+//       product_picture: '12345',
+//       user_id: '6789'
+//     }
+//   }
+// )
+//
+// let linkProperties = {
+//   feature: 'sample-feature',
+//   channel: 'sample-channel'
+// }
+//
+// let controlParams = {
+//   '$desktop_url': 'http://desktop-url.com'
+// }
+//
+// async function branchStuff(){
+//   try{
+//     console.log(await branchUniversalObject);
+//   let {url} = await branchUniversalObject.generateShortUrl(linkProperties, controlParams);
+//     // console.log(url);
+//   }catch(error){
+//     console.log(error);
+//   }
+// }
+// const defaultBUO = {
+//   title: 'wallo'
+// }
+//
+//
+// createBranchUniversalObject = async () => {
+//   try {
+//     let result = await branch.createBranchUniversalObject('abc', defaultBUO)
+//     if (this.buo) this.buo.release()
+//     this.buo = result
+//     console.log('createBranchUniversalObject', result)
+//     this.addResult('success', 'createBranchUniversalObject', result)
+//   } catch (err) {
+//     console.log('createBranchUniversalObject err', err.toString())
+//     this.addResult('error', 'createBranchUniversalObject', err.toString())
+//   }
+// }
+//
+// generateShortUrl = async () => {
+//   if (!this.buo) await this.createBranchUniversalObject()
+//   try {
+//     let result = await this.buo.generateShortUrl()
+//     console.log('generateShortUrl', result)
+//     this.addResult('success', 'generateShortUrl', result)
+//   } catch (err) {
+//     console.log('generateShortUrl err', err)
+//     this.addResult('error', 'generateShortUrl', err.toString())
+//   }
+// }
 
-  let controlParams = {
-    '$desktop_url': 'http://desktop-url.com'
-  }
-  try{
-  let {url} = await branchUniversalObject.generateShortUrl(linkProperties, controlParams);
-  alert(url);
-}catch(eroor){
-  alert(eroor);
-}
-
-}
 
 class MessengerBtn extends Component {
+  //
+  // buo = null
+  //
+  // state = {
+  //   results: [],
+  // }
+  //
+  // componentWillUnmount() {
+  //   if (!this.buo) return
+  //   this.buo.release()
+  // }
 
   constructor(props){
+    // branchStuff();
+    // createBranchUniversalObject();
     super(props);
-    branchStuff();
       var shareContent = {
         contentType: 'link',
         contentUrl: 'www.google.com'
@@ -50,10 +98,9 @@ class MessengerBtn extends Component {
     shareContent = {
       contentType: 'link',
 
-      contentUrl: this.props.activeRPSReducer.url
+      contentUrl: this.props.urlReducers[this.props.activeRPSReducer.id].payload.url
     };
     this.state = {shareContent: shareContent}
-
   }
 
   render(){
@@ -68,7 +115,8 @@ class MessengerBtn extends Component {
 
 function mapStateToProps(state){
   return {
-    activeRPSReducer: state.activeRPSReducer
+    activeRPSReducer: state.activeRPSReducer,
+    urlReducers: state.urlReducers
   };
 }
 

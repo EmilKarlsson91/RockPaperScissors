@@ -7,7 +7,8 @@ import {
 } from 'react-native';
 import RPSDetails from '../containers/rps-details';
 import RPSList from '../containers/rps-list';
-import MessengerBtn from '../containers/messenger-send-button'
+import GenerateUrl from '../logic/url-generator';
+import MessengerBtn from '../containers/messenger-send-button';
 
 export default class App extends Component{
 
@@ -36,10 +37,13 @@ export default class App extends Component{
 
   render(){
     return(
+      //  style={{padding:100, alignItems: 'center', backgroundColor: 'transparent'}}
       <View style={{padding:100, alignItems: 'center', backgroundColor: 'transparent'}}>
+        <GenerateUrl/>
         <RPSDetails />
         <RPSList />
         <MessengerBtn />
+        {/* <BranchMethods/> */}
       </View>
     );
   }

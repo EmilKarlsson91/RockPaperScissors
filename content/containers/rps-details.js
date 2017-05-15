@@ -16,11 +16,19 @@ class RPSDetails extends Component {
         </View>
       );
     }
-
+    if(!this.props.urlReducers){
+      return(
+        <View>
+          <Image style={{height:340, width:340, marginBottom: 10, borderWidth: 1, borderRadius: 5}} source={this.props.activeRPSReducer.img} />
+          <Text>Fel</Text>
+        </View>
+      );
+    }
     return(
       <View>
         <Image style={{height:340, width:340, marginBottom: 10, borderWidth: 1, borderRadius: 5}} source={this.props.activeRPSReducer.img} />
         {/* <Text>{this.props.activeRPSReducer.name}</Text> */}
+        {/* <Text>{this.props.urlReducers[this.props.activeRPSReducer.id].payload.url}</Text> */}
       </View>
     );
   }
@@ -29,7 +37,8 @@ class RPSDetails extends Component {
 function mapStateToProps(state){
   return {
     activeRPSReducer: state.activeRPSReducer,
-    rpsReducers: state.rpsReducers
+    rpsReducers: state.rpsReducers,
+    urlReducers: state.urlReducers
   };
 }
 
