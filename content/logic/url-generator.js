@@ -12,24 +12,27 @@ const branchUniversalObject1 = {
   title: 'Rock Paper Scissors',
   contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
   contentDescription: 'Länk 1',
-  metaData: {
-    type: 1
+  metadata: {
+    user_id: '123',
+    rps_type: 'rock'
   }
 }
 const branchUniversalObject2 = {
   title: 'Rock Paper Scissors',
   contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
   contentDescription: 'Länk 2',
-  metaData: {
-    type: 2
+  metadata: {
+    user_id: '123',
+    rps_type: 'paper'
   }
 }
 const branchUniversalObject3 = {
   title: 'Rock Paper Scissors',
   contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
   contentDescription: 'Länk 3',
-  metaData: {
-    type: 3
+  metadata: {
+    user_id: '123',
+    rps_type: 'scissors'
   }
 }
 
