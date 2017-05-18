@@ -34,9 +34,9 @@
                 <!-- note that the leading "/" is required for pathPrefix-->
                 <!-- Accepts URIs that begin with "potatocat://kluns” -->
                 <data android:scheme="potatocat" />
-                <data android:host="rock" />
-                <data android:host="paper" />
-                <data android:host="scissors"/>m
+                <data android:host="app" />
+                <!--<data android:host="paper" />
+                <data android:host="scissors"/>m-->
             </intent-filter>
         </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />

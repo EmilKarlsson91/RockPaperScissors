@@ -37,6 +37,8 @@ class App extends Component{
   shouldComponentGenerateUrl(){
     if(!this.props.generatedUrls && this.props.loggedIn){
       return (<GenerateUrl/>);
+    }else{
+      return (<Text></Text>);
     }
   }
 
