@@ -4,8 +4,9 @@ import {
   View,
   Text
 } from 'react-native';
-import FBSDK, {SendButton, LoginButton} from 'react-native-fbsdk';
+import FBSDK, {SendButton, LoginButton, AccessToken} from 'react-native-fbsdk';
 import branch from 'react-native-branch';
+import SendButtonGray from '../components/send-button-gray';
 
 class MessengerBtn extends Component {
 
@@ -16,21 +17,44 @@ class MessengerBtn extends Component {
     }
   }
 
-  render(){
-    if(this.props.activeRPSReducer){
+  sendButtonActiveate(){
+    if(this.props.loggedIn && this.props.activeRPSReducer){
+      console.log('Active RPS/MessengerBtn');
       this.state.shareContent = {
           contentType: 'link',
           contentUrl: this.props.activeRPSReducer.url
         }
       return(
-        <View style={{marginTop:150}}>
+        <View>
           <SendButton shareContent={this.state.shareContent}/>
         </View>
       );
+    }else{
+      console.log('Test häär');
+      return(
+        <View>
+          <SendButtonGray/>
+        </View>
+      );
     }
+  }
+  //
+  // {
+  //     console.log('Logged in/MessengerBtn');
+  //     else{
+  //       console.log('No active RPS/MessengerBtn');
+  //       return(
+  //         <View>
+  //           <SendButton />
+  //         </View>
+  //       );
+  //     }
+  //   }
+
+  render(){
     return(
       <View style={{marginTop:150}}>
-        <SendButton shareContent={this.state.shareContent}/>
+        {this.sendButtonActiveate()}
       </View>
     );
   }
@@ -40,6 +64,7 @@ function mapStateToProps(state){
   return {
     activeRPSReducer: state.activeRPSReducer,
     urlReducers: state.urlReducers,
+    loggedIn: state.loggedIn,
   };
 }
 

@@ -14,3 +14,11 @@ export const generatedUrls = (currentUrls) => {
     payload: currentUrls
   }
 };
+export const loggedIn = (loggedIn) => {
+  console.log('LOGGED_IN')
+  console.log(JSON.stringify(loggedIn))
+  return{
+    type: 'LOGGED_IN',
+    payload: loggedIn
+  }
+};
