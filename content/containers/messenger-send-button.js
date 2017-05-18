@@ -30,7 +30,7 @@ class MessengerBtn extends Component {
         </View>
       );
     }else{
-      console.log('Test häär');
+      console.log('SendButton grayed out/MessengerBtn');
       return(
         <View>
           <SendButtonGray/>
@@ -38,18 +38,6 @@ class MessengerBtn extends Component {
       );
     }
   }
-  //
-  // {
-  //     console.log('Logged in/MessengerBtn');
-  //     else{
-  //       console.log('No active RPS/MessengerBtn');
-  //       return(
-  //         <View>
-  //           <SendButton />
-  //         </View>
-  //       );
-  //     }
-  //   }
 
   render(){
     return(

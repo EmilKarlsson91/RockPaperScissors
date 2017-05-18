@@ -5,45 +5,63 @@ import {
 } from 'react-native'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import branch, { RegisterViewEvent } from 'react-native-branch'
+import branch, { RegisterViewEvent } from 'react-native-branch';
 import {generatedUrls} from '../actions';
+import FBSDK, { GraphRequest, GraphRequestManager, AccessToken} from 'react-native-fbsdk';
 
-const branchUniversalObject1 = {
+
+// const infoRequest = new GraphRequest(
+//   '/me',
+//   null,
+//   this._responseInfoCallback,
+// );
+
+var branchUniversalObject1 = {
   title: 'Rock Paper Scissors',
   contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
   contentDescription: 'Länk 1',
   metadata: {
-    user_id: '123',
+    user_id: '',
+    user_name: '',
     rps_type: 'rock'
   }
 }
-const branchUniversalObject2 = {
+var branchUniversalObject2 = {
   title: 'Rock Paper Scissors',
   contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
   contentDescription: 'Länk 2',
   metadata: {
-    user_id: '123',
+    user_id: '',
+    user_name: '',
     rps_type: 'paper'
   }
 }
-const branchUniversalObject3 = {
+var branchUniversalObject3 = {
   title: 'Rock Paper Scissors',
   contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
   contentDescription: 'Länk 3',
   metadata: {
-    user_id: '123',
+    user_id: '',
+    user_name: '',
     rps_type: 'scissors'
   }
 }
 
 var index = 1;
 
-
 class GenerateUrl extends Component{
+
   constructor(props){
     super(props);
-    this.finishedGeneratingUrls();
+    const infoRequest = new GraphRequest(
+      '/me',
+      null,
+      this.finishedGeneratingUrls,
+    );
+    new GraphRequestManager().addRequest(infoRequest).start();
+    // this.finishedGeneratingUrls();
   }
+
   buo = null
 
   state = {
@@ -93,8 +111,25 @@ class GenerateUrl extends Component{
     }
   }
 
-  finishedGeneratingUrls = async () => {
-    await this.cycleGenerateUrls().then(() => this.props.generatedUrls(this.state.urlArray))
+  setUserProps = async (result) => {
+    branchUniversalObject1.metadata.user_id = result.id
+    branchUniversalObject2.metadata.user_id = result.id
+    branchUniversalObject3.metadata.user_id = result.id
+    branchUniversalObject1.metadata.user_name = result.name
+    branchUniversalObject2.metadata.user_name = result.name
+    branchUniversalObject3.metadata.user_name = result.name
+  }
+  finishedGeneratingUrls = async (error: ?Object, result: ?Object) => {
+    if (error) {
+      console.log('Error fetching data: ' + error.toString());
+      console.log(JSON.stringify(error));
+    } else {
+      console.log('Success fetching data: ' + result.toString());
+      console.log(JSON.stringify(result));
+
+
+      await this.setUserProps(result).then(() => this.cycleGenerateUrls()).then(() => this.props.generatedUrls(this.state.urlArray))
+    }
   }
   addResult(type, slug, payload) {
     let result = { type, slug, payload }

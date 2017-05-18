@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {AppRegistry, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {LoginButton, AccessToken, LoginManager} from 'react-native-fbsdk';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -28,9 +28,9 @@ class FacebookLoginBtn extends Component {
   }
 
   componentDidMount(){
-    AccessToken.getCurrentAccessToken().then((data) => {
-      if(!data){
-        console.log('Not logged in, trying to connect');
+    AccessToken.getCurrentAccessToken().then((result) => {
+      if(!result){
+        console.log('Not logged in');
         this.props.loggedIn(false);
         // this.facebookLogin();
       }else{

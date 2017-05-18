@@ -21,7 +21,7 @@ class RPSDetails extends Component {
     }
     return(
       <View>
-        <Image style={{height:340, width:340, marginBottom: 10, borderWidth: 1, borderRadius: 5}} source={this.props.activeRPSReducer.rps.img} />
+        <Image style={{height:340, width:340, marginBottom: 10, borderWidth: 1, borderRadius: 5}} source={this.props.activeRPSReducer.img} />
       </View>
     );
   }
