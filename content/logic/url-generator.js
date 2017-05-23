@@ -23,8 +23,8 @@ var branchUniversalObject1 = {
   metadata: {
     user_id: '',
     user_name: '',
-    rps_type: 'rock',
-    opponent_rps_type: ''
+    first_player_rps_type: '',
+    second_player_rps_type: ''
   }
 }
 var branchUniversalObject2 = {
@@ -34,8 +34,8 @@ var branchUniversalObject2 = {
   metadata: {
     user_id: '',
     user_name: '',
-    rps_type: 'paper',
-    opponent_rps_type: ''
+    first_player_rps_type: '',
+    second_player_rps_type: ''
   }
 }
 var branchUniversalObject3 = {
@@ -45,8 +45,8 @@ var branchUniversalObject3 = {
   metadata: {
     user_id: '',
     user_name: '',
-    rps_type: 'scissors',
-    opponent_rps_type: ''
+    first_player_rps_type: '',
+    second_player_rps_type: ''
   }
 }
 
@@ -115,17 +115,25 @@ class GenerateUrl extends Component{
   }
 
   setUserProps = async (result) => {
-    branchUniversalObject1.metadata.user_id = result.id
-    branchUniversalObject2.metadata.user_id = result.id
-    branchUniversalObject3.metadata.user_id = result.id
-    branchUniversalObject1.metadata.user_name = result.name
-    branchUniversalObject2.metadata.user_name = result.name
-    branchUniversalObject3.metadata.user_name = result.name
+    if(!this.props.startedFromURL){
+      branchUniversalObject1.metadata.user_id = result.id
+      branchUniversalObject2.metadata.user_id = result.id
+      branchUniversalObject3.metadata.user_id = result.id
+      branchUniversalObject1.metadata.user_name = result.name
+      branchUniversalObject2.metadata.user_name = result.name
+      branchUniversalObject3.metadata.user_name = result.name
+      branchUniversalObject1.metadata.first_player_rps_type = 'rock'
+      branchUniversalObject2.metadata.first_player_rps_type = 'paper'
+      branchUniversalObject3.metadata.first_player_rps_type = 'scissors'
+    }
     if(this.props.startedFromURL){
       console.log('funkar');
-      branchUniversalObject1.metadata.opponent_rps_type = this.props.opponentsChoice
-      branchUniversalObject2.metadata.opponent_rps_type = this.props.opponentsChoice
-      branchUniversalObject3.metadata.opponent_rps_type = this.props.opponentsChoice
+      branchUniversalObject1.metadata.second_player_rps_type = 'rock'
+      branchUniversalObject2.metadata.second_player_rps_type = 'paper'
+      branchUniversalObject3.metadata.second_player_rps_type = 'scissors'
+      branchUniversalObject1.metadata.first_player_rps_type = this.props.opponentsChoice
+      branchUniversalObject2.metadata.first_player_rps_type = this.props.opponentsChoice
+      branchUniversalObject3.metadata.first_player_rps_type = this.props.opponentsChoice
     }
   }
   finishedGeneratingUrls = async (error: ?Object, result: ?Object) => {
