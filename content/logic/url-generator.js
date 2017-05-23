@@ -21,8 +21,8 @@ var branchUniversalObject1 = {
   contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
   contentDescription: 'Länk 1',
   metadata: {
-    user_id: '',
-    user_name: '',
+    first_player_name: '',
+    second_player_name: '',
     first_player_rps_type: '',
     second_player_rps_type: ''
   }
@@ -32,8 +32,8 @@ var branchUniversalObject2 = {
   contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
   contentDescription: 'Länk 2',
   metadata: {
-    user_id: '',
-    user_name: '',
+    first_player_name: '',
+    second_player_name: '',
     first_player_rps_type: '',
     second_player_rps_type: ''
   }
@@ -43,8 +43,8 @@ var branchUniversalObject3 = {
   contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
   contentDescription: 'Länk 3',
   metadata: {
-    user_id: '',
-    user_name: '',
+    first_player_name: '',
+    second_player_name: '',
     first_player_rps_type: '',
     second_player_rps_type: ''
   }
@@ -116,24 +116,27 @@ class GenerateUrl extends Component{
 
   setUserProps = async (result) => {
     if(!this.props.startedFromURL){
-      branchUniversalObject1.metadata.user_id = result.id
-      branchUniversalObject2.metadata.user_id = result.id
-      branchUniversalObject3.metadata.user_id = result.id
-      branchUniversalObject1.metadata.user_name = result.name
-      branchUniversalObject2.metadata.user_name = result.name
-      branchUniversalObject3.metadata.user_name = result.name
+      branchUniversalObject1.metadata.first_player_name = result.name
+      branchUniversalObject2.metadata.first_player_name = result.name
+      branchUniversalObject3.metadata.first_player_name = result.name
       branchUniversalObject1.metadata.first_player_rps_type = 'rock'
       branchUniversalObject2.metadata.first_player_rps_type = 'paper'
       branchUniversalObject3.metadata.first_player_rps_type = 'scissors'
     }
     if(this.props.startedFromURL){
       console.log('funkar');
+      branchUniversalObject1.metadata.second_player_rps_type = result.name
+      branchUniversalObject2.metadata.second_player_rps_type = result.name
+      branchUniversalObject3.metadata.second_player_rps_type = result.name
+      branchUniversalObject1.metadata.first_player_name = this.props.opponentsChoice.name
+      branchUniversalObject2.metadata.first_player_name = this.props.opponentsChoice.name
+      branchUniversalObject3.metadata.first_player_name = this.props.opponentsChoice.name
       branchUniversalObject1.metadata.second_player_rps_type = 'rock'
       branchUniversalObject2.metadata.second_player_rps_type = 'paper'
       branchUniversalObject3.metadata.second_player_rps_type = 'scissors'
-      branchUniversalObject1.metadata.first_player_rps_type = this.props.opponentsChoice
-      branchUniversalObject2.metadata.first_player_rps_type = this.props.opponentsChoice
-      branchUniversalObject3.metadata.first_player_rps_type = this.props.opponentsChoice
+      branchUniversalObject1.metadata.first_player_rps_type = this.props.opponentsChoice.rps
+      branchUniversalObject2.metadata.first_player_rps_type = this.props.opponentsChoice.rps
+      branchUniversalObject3.metadata.first_player_rps_type = this.props.opponentsChoice.rps
     }
   }
   finishedGeneratingUrls = async (error: ?Object, result: ?Object) => {

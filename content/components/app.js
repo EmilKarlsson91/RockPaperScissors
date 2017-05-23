@@ -47,13 +47,13 @@ class App extends Component{
               console.log('The oponent choice: ' + JSON.stringify(params.first_player_rps_type));
               switch(params.first_player_rps_type){
                 case 'rock':
-                  this.props.opponentsChoice('rock');
+                  this.props.opponentsChoice({rps:'rock', name: params.first_player_name});
                   break;
                 case 'paper':
-                  this.props.opponentsChoice('paper');
+                  this.props.opponentsChoice({rps:'paper', name: params.first_player_name});
                   break;
                 case 'scissors':
-                  this.props.opponentsChoice('scissors');
+                  this.props.opponentsChoice({rps:'scissors', name: params.first_player_name});
                   break;
               }
 
