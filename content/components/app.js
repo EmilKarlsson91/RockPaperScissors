@@ -44,8 +44,8 @@ class App extends Component{
           var url = Linking.getInitialURL().then((url) => {
             if(url){
               this.props.startedFromURL(true);
-              // console.log('The oponent choose: ' + JSON.stringify(params.rps_type));
-              switch(params.rps_type){
+              console.log('The oponent choice: ' + JSON.stringify(params.first_player_rps_type));
+              switch(params.first_player_rps_type){
                 case 'rock':
                   this.props.opponentsChoice('rock');
                   break;
