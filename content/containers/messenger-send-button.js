@@ -9,7 +9,6 @@ import branch from 'react-native-branch';
 import SendButtonGray from '../components/send-button-gray';
 
 class MessengerBtn extends Component {
-
   state = {
     shareContent: shareContent = {
       contentType: 'link',
@@ -20,6 +19,8 @@ class MessengerBtn extends Component {
   sendButtonActiveate(){
     if(this.props.loggedIn && this.props.activeRPSReducer){
       console.log('Active RPS/MessengerBtn');
+      console.log(this.props.startedFromURL);
+      console.log(this.props.opponentsChoice)
       this.state.shareContent = {
           contentType: 'link',
           contentUrl: this.props.activeRPSReducer.url
@@ -53,6 +54,8 @@ function mapStateToProps(state){
     activeRPSReducer: state.activeRPSReducer,
     urlReducers: state.urlReducers,
     loggedIn: state.loggedIn,
+    opponentsChoice: state.opponentsChoice,
+    startedFromURL: state.startedFromURL
   };
 }
 

@@ -5,7 +5,13 @@ import {
   Modal,
   Linking
 } from 'react-native';
-import FBSDK, { LoginManager, GraphRequest, GraphRequestManager, AccessToken } from 'react-native-fbsdk';
+import FBSDK, {
+  LoginManager,
+  GraphRequest,
+  GraphRequestManager,
+  AccessToken
+} from 'react-native-fbsdk';
+import {bindActionCreators} from 'redux';
 import branch from 'react-native-branch';
 import {connect} from 'react-redux';
 import RPSDetails from '../containers/rps-details';
@@ -13,6 +19,8 @@ import RPSList from '../containers/rps-list';
 import GenerateUrl from '../logic/url-generator';
 import MessengerBtn from '../containers/messenger-send-button';
 import FacebookLoginBtn from '../containers/facebook-login-button';
+import {opponentsChoice, startedFromURL} from '../actions';
+
 
 class App extends Component{
 
@@ -31,6 +39,30 @@ class App extends Component{
       console.log("params: " + JSON.stringify(params))
 
       console.log("URI: " + uri)
+
+          //Function for checking if app was started by URL or not.
+          var url = Linking.getInitialURL().then((url) => {
+            if(url){
+              this.props.startedFromURL(true);
+              // console.log('The oponent choose: ' + JSON.stringify(params.rps_type));
+              switch(params.rps_type){
+                case 'rock':
+                  this.props.opponentsChoice('rock');
+                  break;
+                case 'paper':
+                  this.props.opponentsChoice('paper');
+                  break;
+                case 'scissors':
+                  this.props.opponentsChoice('scissors');
+                  break;
+              }
+
+            }else{
+              this.props.opponentsChoice (null);
+              this.props.startedFromURL(false);
+              console.log('It\'s a brand new session');
+            }
+          });
     })
   }
 
@@ -61,7 +93,16 @@ function mapStateToProps(state){
   return {
     urlReducers: state.urlReducers,
     loggedIn: state.loggedIn,
+    startedFromURL: state.startedFromURL,
+    opponentsChoice: state.opponentsChoice
   };
 }
 
-export default connect(mapStateToProps)(App);
+function matchdispatchToProps(dispatch){
+  return bindActionCreators({
+    startedFromURL: startedFromURL,
+    opponentsChoice: opponentsChoice
+  },dispatch)
+}
+
+export default connect(mapStateToProps, matchdispatchToProps)(App);

@@ -23,7 +23,8 @@ var branchUniversalObject1 = {
   metadata: {
     user_id: '',
     user_name: '',
-    rps_type: 'rock'
+    rps_type: 'rock',
+    opponent_rps_type: ''
   }
 }
 var branchUniversalObject2 = {
@@ -33,7 +34,8 @@ var branchUniversalObject2 = {
   metadata: {
     user_id: '',
     user_name: '',
-    rps_type: 'paper'
+    rps_type: 'paper',
+    opponent_rps_type: ''
   }
 }
 var branchUniversalObject3 = {
@@ -43,7 +45,8 @@ var branchUniversalObject3 = {
   metadata: {
     user_id: '',
     user_name: '',
-    rps_type: 'scissors'
+    rps_type: 'scissors',
+    opponent_rps_type: ''
   }
 }
 
@@ -118,6 +121,12 @@ class GenerateUrl extends Component{
     branchUniversalObject1.metadata.user_name = result.name
     branchUniversalObject2.metadata.user_name = result.name
     branchUniversalObject3.metadata.user_name = result.name
+    if(this.props.startedFromURL){
+      console.log('funkar');
+      branchUniversalObject1.metadata.opponent_rps_type = this.props.opponentsChoice
+      branchUniversalObject2.metadata.opponent_rps_type = this.props.opponentsChoice
+      branchUniversalObject3.metadata.opponent_rps_type = this.props.opponentsChoice
+    }
   }
   finishedGeneratingUrls = async (error: ?Object, result: ?Object) => {
     if (error) {
@@ -152,7 +161,9 @@ class GenerateUrl extends Component{
 
 function mapStateToProps(state){
   return{
-    urlReducers: state.urlReducers
+    urlReducers: state.urlReducers,
+    opponentsChoice: state.opponentsChoice,
+    startedFromURL: state.startedFromURL
   };
 }
 
