@@ -22,12 +22,12 @@ export const loggedIn = (loggedIn) => {
     payload: loggedIn
   }
 };
-export const opponentsChoice = (opponentsChoice) => {
+export const opponentsData = (opponentsData) => {
   console.log('OPPONENTS_CHOICE')
-  console.log(JSON.stringify(opponentsChoice))
+  console.log(JSON.stringify(opponentsData))
   return{
     type: 'OPPONENTS_CHOICE',
-    payload: opponentsChoice
+    payload: opponentsData
   }
 };
 export const startedFromURL = (startedFromURL) => {

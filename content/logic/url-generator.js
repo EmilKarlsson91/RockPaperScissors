@@ -19,7 +19,7 @@ import FBSDK, { GraphRequest, GraphRequestManager, AccessToken} from 'react-nati
 var branchUniversalObject1 = {
   title: 'Rock Paper Scissors',
   contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
-  contentDescription: 'Länk 1',
+  contentDescription: 'You have been challanged to play a game of Rock Paper Scissors, do you dare?',
   metadata: {
     first_player_name: '',
     second_player_name: '',
@@ -30,7 +30,7 @@ var branchUniversalObject1 = {
 var branchUniversalObject2 = {
   title: 'Rock Paper Scissors',
   contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
-  contentDescription: 'Länk 2',
+  contentDescription: 'You have been challanged to play a game of Rock Paper Scissors, do you dare?',
   metadata: {
     first_player_name: '',
     second_player_name: '',
@@ -41,7 +41,7 @@ var branchUniversalObject2 = {
 var branchUniversalObject3 = {
   title: 'Rock Paper Scissors',
   contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
-  contentDescription: 'Länk 3',
+  contentDescription: 'You have been challanged to play a game of Rock Paper Scissors, do you dare?',
   metadata: {
     first_player_name: '',
     second_player_name: '',
@@ -125,18 +125,18 @@ class GenerateUrl extends Component{
     }
     if(this.props.startedFromURL){
       console.log('funkar');
-      branchUniversalObject1.metadata.second_player_rps_type = result.name
-      branchUniversalObject2.metadata.second_player_rps_type = result.name
-      branchUniversalObject3.metadata.second_player_rps_type = result.name
-      branchUniversalObject1.metadata.first_player_name = this.props.opponentsChoice.name
-      branchUniversalObject2.metadata.first_player_name = this.props.opponentsChoice.name
-      branchUniversalObject3.metadata.first_player_name = this.props.opponentsChoice.name
+      branchUniversalObject1.metadata.second_player_name = result.name
+      branchUniversalObject2.metadata.second_player_name = result.name
+      branchUniversalObject3.metadata.second_player_name = result.name
+      branchUniversalObject1.metadata.first_player_name = this.props.opponentsData.name
+      branchUniversalObject2.metadata.first_player_name = this.props.opponentsData.name
+      branchUniversalObject3.metadata.first_player_name = this.props.opponentsData.name
       branchUniversalObject1.metadata.second_player_rps_type = 'rock'
       branchUniversalObject2.metadata.second_player_rps_type = 'paper'
       branchUniversalObject3.metadata.second_player_rps_type = 'scissors'
-      branchUniversalObject1.metadata.first_player_rps_type = this.props.opponentsChoice.rps
-      branchUniversalObject2.metadata.first_player_rps_type = this.props.opponentsChoice.rps
-      branchUniversalObject3.metadata.first_player_rps_type = this.props.opponentsChoice.rps
+      branchUniversalObject1.metadata.first_player_rps_type = this.props.opponentsData.rps
+      branchUniversalObject2.metadata.first_player_rps_type = this.props.opponentsData.rps
+      branchUniversalObject3.metadata.first_player_rps_type = this.props.opponentsData.rps
     }
   }
   finishedGeneratingUrls = async (error: ?Object, result: ?Object) => {
@@ -173,7 +173,7 @@ class GenerateUrl extends Component{
 function mapStateToProps(state){
   return{
     urlReducers: state.urlReducers,
-    opponentsChoice: state.opponentsChoice,
+    opponentsData: state.opponentsData,
     startedFromURL: state.startedFromURL
   };
 }

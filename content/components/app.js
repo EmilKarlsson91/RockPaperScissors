@@ -19,7 +19,7 @@ import RPSList from '../containers/rps-list';
 import GenerateUrl from '../logic/url-generator';
 import MessengerBtn from '../containers/messenger-send-button';
 import FacebookLoginBtn from '../containers/facebook-login-button';
-import {opponentsChoice, startedFromURL} from '../actions';
+import {opponentsData, startedFromURL} from '../actions';
 
 
 class App extends Component{
@@ -47,18 +47,18 @@ class App extends Component{
               console.log('The oponent choice: ' + JSON.stringify(params.first_player_rps_type));
               switch(params.first_player_rps_type){
                 case 'rock':
-                  this.props.opponentsChoice({rps:'rock', name: params.first_player_name});
+                  this.props.opponentsData({rps:'rock', name: params.first_player_name});
                   break;
                 case 'paper':
-                  this.props.opponentsChoice({rps:'paper', name: params.first_player_name});
+                  this.props.opponentsData({rps:'paper', name: params.first_player_name});
                   break;
                 case 'scissors':
-                  this.props.opponentsChoice({rps:'scissors', name: params.first_player_name});
+                  this.props.opponentsData({rps:'scissors', name: params.first_player_name});
                   break;
               }
 
             }else{
-              this.props.opponentsChoice (null);
+              this.props.opponentsData (null);
               this.props.startedFromURL(false);
               console.log('It\'s a brand new session');
             }
@@ -94,14 +94,14 @@ function mapStateToProps(state){
     urlReducers: state.urlReducers,
     loggedIn: state.loggedIn,
     startedFromURL: state.startedFromURL,
-    opponentsChoice: state.opponentsChoice
+    opponentsData: state.opponentsData
   };
 }
 
 function matchdispatchToProps(dispatch){
   return bindActionCreators({
     startedFromURL: startedFromURL,
-    opponentsChoice: opponentsChoice
+    opponentsData: opponentsData
   },dispatch)
 }
 
