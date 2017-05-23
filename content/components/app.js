@@ -68,6 +68,9 @@ class App extends Component{
 
   shouldComponentGenerateUrl(){
     if(!this.props.generatedUrls && this.props.loggedIn){
+      if(this.props.startedFromURL && !this.props.opponentsData){
+        return (<Text></Text>);
+      }
       return (<GenerateUrl/>);
     }else{
       return (<Text></Text>);
