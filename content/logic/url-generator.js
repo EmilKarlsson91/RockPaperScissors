@@ -19,7 +19,7 @@ import FBSDK, { GraphRequest, GraphRequestManager, AccessToken} from 'react-nati
 var branchUniversalObject1 = {
   title: 'Rock Paper Scissors',
   contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
-  contentDescription: 'You have been challanged to play a game of Rock Paper Scissors, do you dare?',
+  contentDescription: '',
   metadata: {
     first_player_name: '',
     second_player_name: '',
@@ -30,7 +30,7 @@ var branchUniversalObject1 = {
 var branchUniversalObject2 = {
   title: 'Rock Paper Scissors',
   contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
-  contentDescription: 'You have been challanged to play a game of Rock Paper Scissors, do you dare?',
+  contentDescription: '',
   metadata: {
     first_player_name: '',
     second_player_name: '',
@@ -41,7 +41,7 @@ var branchUniversalObject2 = {
 var branchUniversalObject3 = {
   title: 'Rock Paper Scissors',
   contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
-  contentDescription: 'You have been challanged to play a game of Rock Paper Scissors, do you dare?',
+  contentDescription: '',
   metadata: {
     first_player_name: '',
     second_player_name: '',
@@ -116,6 +116,9 @@ class GenerateUrl extends Component{
 
   setUserProps = async (result) => {
     if(!this.props.startedFromURL){
+      branchUniversalObject1.contentDescription = result.name + ' have challanged you to play a game of Rock Paper Scissors, do you dare?'
+      branchUniversalObject2.contentDescription = result.name + ' have challanged you to play a game of Rock Paper Scissors, do you dare?'
+      branchUniversalObject3.contentDescription = result.name + ' have challanged you to play a game of Rock Paper Scissors, do you dare?'
       branchUniversalObject1.metadata.first_player_name = result.name
       branchUniversalObject2.metadata.first_player_name = result.name
       branchUniversalObject3.metadata.first_player_name = result.name
@@ -125,6 +128,9 @@ class GenerateUrl extends Component{
     }
     if(this.props.startedFromURL){
       console.log('funkar');
+      branchUniversalObject1.contentDescription = result.name + ' have responded, click on the link to see the result!'
+      branchUniversalObject2.contentDescription = result.name + ' have responded, click on the link to see the result!'
+      branchUniversalObject3.contentDescription = result.name + ' have responded, click on the link to see the result!'
       branchUniversalObject1.metadata.second_player_name = result.name
       branchUniversalObject2.metadata.second_player_name = result.name
       branchUniversalObject3.metadata.second_player_name = result.name
