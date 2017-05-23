@@ -11,7 +11,7 @@ const allReducers = combineReducers({
   activeRPSReducer: ActiveRPSReducer,
   urlReducers: UrlReducers,
   loggedIn: LoggedIn,
-  OpponentsData: OpponentsData,
+  opponentsData: OpponentsData,
   startedFromURL: StartedFromURL
 });
 
