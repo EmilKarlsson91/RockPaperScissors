@@ -37,7 +37,7 @@ class LinkSubscription extends Component{
               //Second player
               switch(params.second_player_rps_type){
                 case 'rock':
-                this.props.selectedRPS(this.props.rpsResult[3]);
+                this.props.selectedRPS(this.props.rpsResult[2]);
                 this.props.activeBranchParams({params, result: 'played equal'});
                 break;
                 case 'paper':
@@ -45,7 +45,7 @@ class LinkSubscription extends Component{
                   this.props.activeBranchParams({params, result: 'lost'});
                 break;
                 case 'scissors':
-                  this.props.selectedRPS(this.props.rpsResult[1]);
+                  this.props.selectedRPS(this.props.rpsResult[7]);
                   this.props.activeBranchParams({params, result: 'won'});
                 break;
               }
@@ -54,15 +54,15 @@ class LinkSubscription extends Component{
               //Second player
               switch(params.second_player_rps_type){
                 case 'rock':
-                  this.props.selectedRPS(this.props.rpsResult[0]);
+                  this.props.selectedRPS(this.props.rpsResult[1]);
                   this.props.activeBranchParams({params, result: 'won'});
                 break;
                 case 'paper':
-                this.props.selectedRPS(this.props.rpsResult[3]);
+                this.props.selectedRPS(this.props.rpsResult[5]);
                 this.props.activeBranchParams({params, result: 'played equal'});
                 break;
                 case 'scissors':
-                  this.props.selectedRPS(this.props.rpsResult[2]);
+                  this.props.selectedRPS(this.props.rpsResult[3]);
                   this.props.activeBranchParams({params, result: 'lost'});
                 break;
               }
@@ -71,15 +71,15 @@ class LinkSubscription extends Component{
               //Second player
               switch(params.second_player_rps_type){
                 case 'rock':
-                  this.props.selectedRPS(this.props.rpsResult[1]);
+                  this.props.selectedRPS(this.props.rpsResult[6]);
                   this.props.activeBranchParams({params, result: 'lost'});
                 break;
                 case 'paper':
-                  this.props.selectedRPS(this.props.rpsResult[2]);
+                  this.props.selectedRPS(this.props.rpsResult[4]);
                   this.props.activeBranchParams({params, result: 'won'});
                 break;
                 case 'scissors':
-                  this.props.selectedRPS(this.props.rpsResult[3]);
+                  this.props.selectedRPS(this.props.rpsResult[8]);
                   this.props.activeBranchParams({params, result: 'played equal'});
                 break;
               }
