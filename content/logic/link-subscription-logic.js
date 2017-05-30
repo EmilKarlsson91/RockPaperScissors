@@ -37,7 +37,7 @@ class LinkSubscription extends Component{
               //Second player
               switch(params.second_player_rps_type){
                 case 'rock':
-
+                this.props.selectedRPS(this.props.rpsResult[4]);
                 break;
                 case 'paper':
                   this.props.selectedRPS(this.props.rpsResult[0]);
@@ -54,7 +54,7 @@ class LinkSubscription extends Component{
                   this.props.selectedRPS(this.props.rpsResult[0]);
                 break;
                 case 'paper':
-
+                this.props.selectedRPS(this.props.rpsResult[4]);
                 break;
                 case 'scissors':
                   this.props.selectedRPS(this.props.rpsResult[2]);
@@ -71,7 +71,7 @@ class LinkSubscription extends Component{
                   this.props.selectedRPS(this.props.rpsResult[2]);
                 break;
                 case 'scissors':
-
+                  this.props.selectedRPS(this.props.rpsResult[4]);
                 break;
               }
               break;
