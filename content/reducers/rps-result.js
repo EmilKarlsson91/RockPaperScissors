@@ -10,7 +10,7 @@ var RockDraw = require('../resources/RockDraw.jpg');
 var PaperDestroyedLeft = require('../resources/PaperDestroyedLeft.jpg');
 var PaperDestroyedRight = require('../resources/PaperDestroyedRight.jpg');
 var PaperDraw = require('../resources/PaperDraw.jpg');
-var ScisorsDestroyedLeft = require('../resources/ScisorsDestroyedLeft.jpg');
+var ScissorsDestroyedLeft = require('../resources/ScissorsDestroyedLeft.jpg');
 var ScissorsDestroyedRight = require('../resources/ScissorsDestroyedRight.jpg');
 var ScissorsDraw = require('../resources/ScissorsDraw.jpg');
 
@@ -58,8 +58,8 @@ export default function (){
     },
     {
       id: 6,
-      name: 'ScisorsDestroyedLeft',
-      img: ScisorsDestroyedLeft,
+      name: 'ScissorsDestroyedLeft',
+      img: ScissorsDestroyedLeft,
       url: ''
     },
     {
