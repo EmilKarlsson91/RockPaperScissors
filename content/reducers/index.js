@@ -2,12 +2,14 @@ import { combineReducers } from 'redux';
 import RPSReducers from './rps-reducers';
 import ActiveRPSReducer from './active-rps-reducer';
 import UrlReducers from './url-reducers';
+import RPSResult from './rps-result';
 import LoggedIn from './logged-in-reducer';
 import OpponentsData from './opponents-choice-reducers';
 import StartedFromURL from './started-from-url-reducers';
 
 const allReducers = combineReducers({
   rpsReducers: RPSReducers,
+  rpsResult: RPSResult,
   activeRPSReducer: ActiveRPSReducer,
   urlReducers: UrlReducers,
   loggedIn: LoggedIn,

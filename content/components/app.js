@@ -3,7 +3,10 @@ import {
   View,
   Text,
   Modal,
-  Linking
+  Linking,
+  TouchableNativeFeedback,
+  AppRegistry,
+  reactContext
 } from 'react-native';
 import FBSDK, {
   LoginManager,
@@ -12,80 +15,77 @@ import FBSDK, {
   AccessToken
 } from 'react-native-fbsdk';
 import {bindActionCreators} from 'redux';
-import branch from 'react-native-branch';
 import {connect} from 'react-redux';
+import branch from 'react-native-branch';
 import RPSDetails from '../containers/rps-details';
 import RPSList from '../containers/rps-list';
 import GenerateUrl from '../logic/url-generator';
 import MessengerBtn from '../containers/messenger-send-button';
 import FacebookLoginBtn from '../containers/facebook-login-button';
-import {opponentsData, startedFromURL} from '../actions';
+import RNRestart from 'react-native-restart';
+import LinkSubscription from '../logic/link-subscription-logic';
+import {opponentsData, startedFromURL, generatedUrls, selectedRPS} from '../actions';
 
+var num = 0;
 
 class App extends Component{
 
-  componentDidMount(){
-
-    console.info("Subscribing to Branch links")
-
-    branch.subscribe(({ error, params, uri }) => {
-      if (error) {
-        console.error("Error from Branch: " + error)
-        return
-      }
-
-      console.info("Received link response from Branch")
-
-      console.log("params: " + JSON.stringify(params))
-
-      console.log("URI: " + uri)
-
-          //Function for checking if app was started by URL or not.
-          var url = Linking.getInitialURL().then((url) => {
-            if(url){
-              this.props.startedFromURL(true);
-              console.log('The oponent choice: ' + JSON.stringify(params.first_player_rps_type));
-              switch(params.first_player_rps_type){
-                case 'rock':
-                  this.props.opponentsData({rps:'rock', name: params.first_player_name});
-                  break;
-                case 'paper':
-                  this.props.opponentsData({rps:'paper', name: params.first_player_name});
-                  break;
-                case 'scissors':
-                  this.props.opponentsData({rps:'scissors', name: params.first_player_name});
-                  break;
-              }
-
-            }else{
-              this.props.opponentsData (null);
-              this.props.startedFromURL(false);
-              console.log('It\'s a brand new session');
-            }
-          });
-    })
+  constructor(props){
+    super(props);
   }
 
   shouldComponentGenerateUrl(){
-    if(!this.props.generatedUrls && this.props.loggedIn){
+    console.log('Running shouldComponentGenerateUrl/app')
+    if(!this.props.urlReducers && this.props.loggedIn){
       if(this.props.startedFromURL && !this.props.opponentsData){
         return (<Text></Text>);
       }
+      // console.olg(this.props.selectedRPS({}))
+      console.log('Test1' + this.props.urlReducers);
+      console.log('Test2' + this.props.activeRPSReducer);
+      console.log('Generating url/app');
       return (<GenerateUrl/>);
     }else{
       return (<Text></Text>);
     }
+  }
+  shouldComonentSubscribeToLink(){
+    console.log('Running LinkSubscription/app');
+    console.log(num);
+    if(num < 1){
+      console.log('Returning LinkSubscription/app');
+      return(<LinkSubscription/>);
+    }else{
+      return(<Text></Text>);
+    }
+  }
+
+  restart(){
+    num++;
+
+    // this.props.generatedUrls(null);
+    // this.props.opponentsData(null);
+    //GenerateUrl = require('../logic/url-generator');
+    RNRestart.Restart();
+
   }
 
   render(){
     return(
       <View style={{padding:100, alignItems: 'center', backgroundColor: 'transparent'}}>
         {this.shouldComponentGenerateUrl()}
+        {this.shouldComonentSubscribeToLink()}
+        {/* <LinkSubscription/> */}
         <RPSDetails />
         <RPSList />
         <View style={{flexDirection: 'row'}}>
           <MessengerBtn />
           <FacebookLoginBtn/>
+          <TouchableNativeFeedback onPress={() => {this.restart()}}>
+            <Text style={{marginTop: 150, backgroundColor: 'blue', borderWidth: 1, borderRadius: 2, borderColor: 'transparent', color: 'white'}}>
+              Restart
+            </Text>
+          </TouchableNativeFeedback>
         </View>
       </View>
     );
@@ -94,6 +94,8 @@ class App extends Component{
 
 function mapStateToProps(state){
   return {
+    rpsReducers: state.rpsReducers,
+    activeRPSReducer: state.activeRPSReducer,
     urlReducers: state.urlReducers,
     loggedIn: state.loggedIn,
     startedFromURL: state.startedFromURL,
@@ -104,8 +106,10 @@ function mapStateToProps(state){
 function matchdispatchToProps(dispatch){
   return bindActionCreators({
     startedFromURL: startedFromURL,
-    opponentsData: opponentsData
-  },dispatch)
+    opponentsData: opponentsData,
+    generatedUrls: generatedUrls,
+    selectedRPS: selectedRPS
+  }, dispatch)
 }
 
 export default connect(mapStateToProps, matchdispatchToProps)(App);

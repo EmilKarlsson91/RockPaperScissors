@@ -9,9 +9,10 @@
   "dependencies": {
     "react": "16.0.0-alpha.6",
     "react-native": "0.44.0",
-    "react-native-branch": "^2.0.0-beta.3",
-    "react-native-fbsdk": "^0.5.0",
-    "react-redux": "^5.0.4",
+    "react-native-branch": "^2.0.0-beta.5",
+    "react-native-fbsdk": "^0.6.0",
+    "react-native-restart": "0.0.2",
+    "react-redux": "^5.0.5",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0"
   },

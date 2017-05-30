@@ -3,6 +3,7 @@ package com.potatocat;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.avishayil.rnrestart.ReactNativeRestartPackage;
 
 import io.branch.referral.Branch;
 import io.branch.rnbranch.RNBranchPackage;
@@ -38,6 +39,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativeRestartPackage(),
             new RNBranchPackage(),
             new FBSDKPackage(mCallbackManager)
       );

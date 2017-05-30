@@ -13,6 +13,7 @@ import {selectedUrl} from '../actions';
 class RPSList extends Component{
    //Behöver göra så att man inte kan trycka på knappen innan urlen är genererad.
   _makeList(){
+    console.log('Updating/rps-list');
     if(!this.props.urlReducers){
       return this.props.rpsReducers.map((rps) => {
         return(
