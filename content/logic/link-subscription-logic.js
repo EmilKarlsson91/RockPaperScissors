@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {opponentsData, startedFromURL, generatedUrls, selectedRPS} from '../actions';
+import {opponentsData, startedFromURL, generatedUrls, selectedRPS, activeBranchParams} from '../actions';
 import branch from 'react-native-branch';
 
 
@@ -37,13 +37,16 @@ class LinkSubscription extends Component{
               //Second player
               switch(params.second_player_rps_type){
                 case 'rock':
-                this.props.selectedRPS(this.props.rpsResult[4]);
+                this.props.selectedRPS(this.props.rpsResult[3]);
+                this.props.activeBranchParams({params, result: 'played equal'});
                 break;
                 case 'paper':
                   this.props.selectedRPS(this.props.rpsResult[0]);
+                  this.props.activeBranchParams({params, result: 'lost'});
                 break;
                 case 'scissors':
                   this.props.selectedRPS(this.props.rpsResult[1]);
+                  this.props.activeBranchParams({params, result: 'won'});
                 break;
               }
               break;
@@ -52,12 +55,15 @@ class LinkSubscription extends Component{
               switch(params.second_player_rps_type){
                 case 'rock':
                   this.props.selectedRPS(this.props.rpsResult[0]);
+                  this.props.activeBranchParams({params, result: 'won'});
                 break;
                 case 'paper':
-                this.props.selectedRPS(this.props.rpsResult[4]);
+                this.props.selectedRPS(this.props.rpsResult[3]);
+                this.props.activeBranchParams({params, result: 'played equal'});
                 break;
                 case 'scissors':
                   this.props.selectedRPS(this.props.rpsResult[2]);
+                  this.props.activeBranchParams({params, result: 'lost'});
                 break;
               }
               break;
@@ -66,12 +72,15 @@ class LinkSubscription extends Component{
               switch(params.second_player_rps_type){
                 case 'rock':
                   this.props.selectedRPS(this.props.rpsResult[1]);
+                  this.props.activeBranchParams({params, result: 'lost'});
                 break;
                 case 'paper':
                   this.props.selectedRPS(this.props.rpsResult[2]);
+                  this.props.activeBranchParams({params, result: 'won'});
                 break;
                 case 'scissors':
-                  this.props.selectedRPS(this.props.rpsResult[4]);
+                  this.props.selectedRPS(this.props.rpsResult[3]);
+                  this.props.activeBranchParams({params, result: 'played equal'});
                 break;
               }
               break;
@@ -113,6 +122,7 @@ function mapStateToProps(state){
   return {
     rpsResult: state.rpsResult,
     activeRPSReducer: state.activeRPSReducer,
+    activeBranchParams: state.activeBranchParams,
     urlReducers: state.urlReducers,
     loggedIn: state.loggedIn,
     startedFromURL: state.startedFromURL,
@@ -125,7 +135,8 @@ function matchdispatchToProps(dispatch){
     startedFromURL: startedFromURL,
     opponentsData: opponentsData,
     generatedUrls: generatedUrls,
-    selectedRPS: selectedRPS
+    selectedRPS: selectedRPS,
+    activeBranchParams: activeBranchParams
   },dispatch)
 }
 

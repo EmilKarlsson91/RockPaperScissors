@@ -38,3 +38,11 @@ export const startedFromURL = (startedFromURL) => {
     payload: startedFromURL
   }
 };
+export const activeBranchParams = (activeBranchParams) => {
+  console.log('ACTIVE_BRANCH_PARAMS');
+  console.log(activeBranchParams);
+  return{
+    type: 'ACTIVE_BRANCH_PARAMS',
+    payload: activeBranchParams
+  }
+};

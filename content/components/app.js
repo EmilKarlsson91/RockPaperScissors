@@ -82,7 +82,7 @@ class App extends Component{
           <MessengerBtn />
           <FacebookLoginBtn/>
           <TouchableNativeFeedback onPress={() => {this.restart()}}>
-            <Text style={{marginTop: 150, backgroundColor: 'blue', borderWidth: 1, borderRadius: 2, borderColor: 'transparent', color: 'white'}}>
+            <Text style={{marginTop: 150, backgroundColor: '#0083ff', borderWidth: 1, borderRadius: 2, borderColor: '#0083ff', color: 'white'}}>
               Restart
             </Text>
           </TouchableNativeFeedback>

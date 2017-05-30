@@ -14,7 +14,15 @@ class RPSList extends Component{
    //Behöver göra så att man inte kan trycka på knappen innan urlen är genererad.
   _makeList(){
     console.log('Updating/rps-list');
-    if(!this.props.urlReducers){
+    if(this.props.activeBranchParams){
+      return(
+        <View>
+          <Text style={{alignItems: 'center', padding: 3, height: 100, width:340, margin: 10, marginBottom: 10, borderWidth: 1, borderRadius: 5, borderColor: '#0083ff', backgroundColor: '#0083ff', color: 'white', fontSize: 20, fontFamily: 'Helvetica'}}>
+            {this.props.activeBranchParams.params.first_player_name + '\n'}{this.props.activeBranchParams.result} against{'\n' + this.props.activeBranchParams.params.second_player_name}!
+          </Text>
+        </View>
+          );
+    }else if(!this.props.urlReducers){
       return this.props.rpsReducers.map((rps) => {
         return(
           <TouchableNativeFeedback key={rps.id}>
@@ -44,6 +52,7 @@ function mapStateToProps(state){
   return{
     rpsReducers: state.rpsReducers,
     urlReducers: state.urlReducers,
+    activeBranchParams: state.activeBranchParams
   };
 }
 
