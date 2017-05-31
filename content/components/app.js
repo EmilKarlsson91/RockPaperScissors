@@ -6,7 +6,8 @@ import {
   Linking,
   TouchableNativeFeedback,
   AppRegistry,
-  reactContext
+  reactContext,
+  AppState
 } from 'react-native';
 import FBSDK, {
   LoginManager,
@@ -32,6 +33,17 @@ class App extends Component{
 
   constructor(props){
     super(props);
+    state = {
+        appState: AppState.currentState
+      }
+  }
+
+   componentDidMount() {
+     AppState.addEventListener('change', this._handleAppStateChange);
+  }
+
+   componentWillUnmount() {
+     AppState.removeEventListener('change', this._handleAppStateChange);
   }
 
   shouldComponentGenerateUrl(){
@@ -40,7 +52,7 @@ class App extends Component{
       if(this.props.startedFromURL && !this.props.opponentsData){
         return (<Text></Text>);
       }
-      // console.olg(this.props.selectedRPS({}))
+      // console.log(this.props.selectedRPS({}))
       console.log('Test1' + this.props.urlReducers);
       console.log('Test2' + this.props.activeRPSReducer);
       console.log('Generating url/app');
@@ -60,15 +72,23 @@ class App extends Component{
     }
   }
 
-  restart(){
-    num++;
+    _handleAppStateChange = (nextAppState) => {
+      if (nextAppState === 'background') {
+        console.log('App has come to the background');
+        this.restart();
 
-    // this.props.generatedUrls(null);
-    // this.props.opponentsData(null);
-    //GenerateUrl = require('../logic/url-generator');
-    RNRestart.Restart();
+      }
+    }
 
-  }
+    restart(){
+      num++;
+
+      // this.props.generatedUrls(null);
+      // this.props.opponentsData(null);
+      //GenerateUrl = require('../logic/url-generator');
+      RNRestart.Restart();
+      console.log('Restart successfull')
+    }
 
   render(){
     return(
@@ -82,9 +102,9 @@ class App extends Component{
           <MessengerBtn />
           <FacebookLoginBtn/>
           <TouchableNativeFeedback onPress={() => {this.restart()}}>
-            <Text style={{marginTop: 150, backgroundColor: '#0083ff', borderWidth: 1, borderRadius: 2, borderColor: '#0083ff', color: 'white'}}>
+            {/* <Text style={{marginTop: 150, backgroundColor: '#0083ff', borderWidth: 1, borderRadius: 2, borderColor: '#0083ff', color: 'white'}}>
               Restart
-            </Text>
+            </Text> */}
           </TouchableNativeFeedback>
         </View>
       </View>
