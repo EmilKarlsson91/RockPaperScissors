@@ -26,6 +26,7 @@ import FacebookLoginBtn from '../containers/facebook-login-button';
 import RNRestart from 'react-native-restart';
 import LinkSubscription from '../logic/link-subscription-logic';
 import {opponentsData, startedFromURL, generatedUrls, selectedRPS} from '../actions';
+import WelcomeText from '../containers/welcome-text';
 
 var num = 0;
 var num2 = 0;
@@ -110,15 +111,24 @@ class App extends Component{
 
   render(){
     return(
-      <View style={{padding:100, alignItems: 'center', backgroundColor: 'transparent'}}>
+      <View style={{padding:15, alignItems: 'center', backgroundColor: 'transparent'}}>
         {this.shouldComponentGenerateUrl()}
         {this.shouldComonentSubscribeToLink()}
         {/* <LinkSubscription/> */}
+        <WelcomeText />
         <RPSDetails />
         <RPSList />
         <View style={{flexDirection: 'row'}}>
           <MessengerBtn />
           <FacebookLoginBtn/>
+<<<<<<< HEAD
+=======
+          {/* <TouchableNativeFeedback onPress={() => {this.restart()}}>
+            <Text style={{marginTop: 150, backgroundColor: '#0083ff', borderWidth: 1, borderRadius: 2, borderColor: '#0083ff', color: 'white'}}>
+              Restart
+            </Text>
+          </TouchableNativeFeedback> */}
+>>>>>>> 1bf2377de8c9a674c05e79ec436509c25faa4eb3
         </View>
       </View>
     );
