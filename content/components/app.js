@@ -29,15 +29,18 @@ import {opponentsData, startedFromURL, generatedUrls, selectedRPS} from '../acti
 import WelcomeText from '../containers/welcome-text';
 
 var num = 0;
+var num2 = 0;
 
 class App extends Component{
 
-  constructor(props){
-    super(props);
-    state = {
-        appState: AppState.currentState
-      }
-  }
+  // constructor(props){
+  //   super(props);
+  //
+  // }
+  state = {
+      appState: AppState.currentState,
+      shouldComponentRestart: false,
+    }
 
    componentDidMount() {
      AppState.addEventListener('change', this._handleAppStateChange);
@@ -48,25 +51,29 @@ class App extends Component{
   }
 
   shouldComponentGenerateUrl(){
-    console.log('Running shouldComponentGenerateUrl/app')
-    if(!this.props.urlReducers && this.props.loggedIn){
-      if(this.props.startedFromURL && !this.props.opponentsData){
+    if(AppState.currentState === 'active'){
+      console.log('Running shouldComponentGenerateUrl/app')
+      if(num2 < 1 && this.props.loggedIn){
+        num2++;
+        if(this.props.startedFromURL && !this.props.opponentsData){
+          return (<Text></Text>);
+        }else{
+          console.log('Generating url/app');
+          console.log('Number two/app' + num2);
+          return (<GenerateUrl/>);
+        }
+      }else{
         return (<Text></Text>);
       }
-      // console.log(this.props.selectedRPS({}))
-      console.log('Test1' + this.props.urlReducers);
-      console.log('Test2' + this.props.activeRPSReducer);
-      console.log('Generating url/app');
-      return (<GenerateUrl/>);
-    }else{
-      return (<Text></Text>);
     }
   }
   shouldComonentSubscribeToLink(){
+    console.log(AppState.currentState);
     console.log('Running LinkSubscription/app');
     console.log(num);
     if(num < 1){
       console.log('Returning LinkSubscription/app');
+      num++;
       return(<LinkSubscription/>);
     }else{
       return(<Text></Text>);
@@ -76,19 +83,30 @@ class App extends Component{
     _handleAppStateChange = (nextAppState) => {
       if (nextAppState === 'background') {
         console.log('App has come to the background');
-        this.restart();
-
+        this.setState({appState: nextAppState});
+        this.setState({shouldComponentRestart: true});
+      }else if(nextAppState === 'active'){
+        console.log('App is active');
+        this.setState({appState: nextAppState, haveRestarted: false});
+        if(this.state.shouldComponentRestart){
+          this.setState({shouldComponentRestart: false});
+          this.restart();
+        }
       }
     }
 
-    restart(){
-      num++;
+    resetStates = async () => {
+      this.props.generatedUrls(null);
+      this.props.opponentsData(null);
+    }
+    restartCall(){
+      RNRestart.Restart()
+    }
 
-      // this.props.generatedUrls(null);
-      // this.props.opponentsData(null);
-      //GenerateUrl = require('../logic/url-generator');
-      RNRestart.Restart();
-      console.log('Restart successfull')
+    restart = async () => {
+        num2 = 0;
+        await this.resetStates().then(() => this.restartCall());
+        console.log('Restart successfull');
     }
 
   render(){
@@ -103,11 +121,14 @@ class App extends Component{
         <View style={{flexDirection: 'row'}}>
           <MessengerBtn />
           <FacebookLoginBtn/>
+<<<<<<< HEAD
+=======
           {/* <TouchableNativeFeedback onPress={() => {this.restart()}}>
             <Text style={{marginTop: 150, backgroundColor: '#0083ff', borderWidth: 1, borderRadius: 2, borderColor: '#0083ff', color: 'white'}}>
               Restart
             </Text>
           </TouchableNativeFeedback> */}
+>>>>>>> 1bf2377de8c9a674c05e79ec436509c25faa4eb3
         </View>
       </View>
     );
