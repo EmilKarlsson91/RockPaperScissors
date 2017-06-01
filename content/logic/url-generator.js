@@ -9,53 +9,16 @@ import branch, { RegisterViewEvent } from 'react-native-branch';
 import {generatedUrls} from '../actions';
 import FBSDK, { GraphRequest, GraphRequestManager, AccessToken} from 'react-native-fbsdk';
 
-
-// const infoRequest = new GraphRequest(
-//   '/me',
-//   null,
-//   this._responseInfoCallback,
-// );
-
-var branchUniversalObject1 = {
-  title: 'Rock Paper Scissors',
-  contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
-  contentDescription: '',
-  metadata: {
-    first_player_name: '',
-    second_player_name: '',
-    first_player_rps_type: '',
-    second_player_rps_type: ''
-  }
-}
-var branchUniversalObject2 = {
-  title: 'Rock Paper Scissors',
-  contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
-  contentDescription: '',
-  metadata: {
-    first_player_name: '',
-    second_player_name: '',
-    first_player_rps_type: '',
-    second_player_rps_type: ''
-  }
-}
-var branchUniversalObject3 = {
-  title: 'Rock Paper Scissors',
-  contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
-  contentDescription: '',
-  metadata: {
-    first_player_name: '',
-    second_player_name: '',
-    first_player_rps_type: '',
-    second_player_rps_type: ''
-  }
-}
+var branchUniversalObject1 = {}
+var branchUniversalObject2 = {}
+var branchUniversalObject3 = {}
 
 var index = 1;
+var urlArray = [];
 
 class GenerateUrl extends Component{
 
-  constructor(props){
-    super(props);
+  componentDidMount(){
     const infoRequest = new GraphRequest(
       '/me',
       null,
@@ -69,19 +32,61 @@ class GenerateUrl extends Component{
 
   state = {
     results: [],
-    urlArray: [],
+    // urlArray: [],
   }
+
+  resetComponent = async () => {
+      console.log('Resetting objects/url-generator------------------------------------------------------------------------------------------------------');
+
+      if (this.buo) this.buo.release()
+      tempBranchUniversalObject1 = {
+        title: 'Rock Paper Scissors',
+        contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
+        contentDescription: '',
+        metadata: {
+          first_player_name: '',
+          second_player_name: '',
+          first_player_rps_type: '',
+          second_player_rps_type: ''
+        }
+      }
+      tempBranchUniversalObject2 = {
+        title: 'Rock Paper Scissors',
+        contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
+        contentDescription: '',
+        metadata: {
+          first_player_name: '',
+          second_player_name: '',
+          first_player_rps_type: '',
+          second_player_rps_type: ''
+        }
+      }
+      tempBranchUniversalObject3 = {
+        title: 'Rock Paper Scissors',
+        contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
+        contentDescription: '',
+        metadata: {
+          first_player_name: '',
+          second_player_name: '',
+          first_player_rps_type: '',
+          second_player_rps_type: ''
+        }
+      }
+      branchUniversalObject1 = tempBranchUniversalObject1;
+      branchUniversalObject2 = tempBranchUniversalObject2;
+      branchUniversalObject3 = tempBranchUniversalObject3;
+    }
 
   createBranchUniversalObject = async () => {
     if(index === 1){
-      branchUniversalObjectTest = branchUniversalObject3
+      branchUniversalObjectTemp = branchUniversalObject3
     }else if (index === 2){
-      branchUniversalObjectTest = branchUniversalObject2
+      branchUniversalObjectTemp = branchUniversalObject2
     }else{
-      branchUniversalObjectTest = branchUniversalObject1
+      branchUniversalObjectTemp = branchUniversalObject1
     }
     try {
-      let result = await branch.createBranchUniversalObject('abc', branchUniversalObjectTest)
+      let result = await branch.createBranchUniversalObject('abc', branchUniversalObjectTemp)
       if (this.buo) this.buo.release()
       this.buo = result
       console.log('createBranchUniversalObject', result)
@@ -112,6 +117,7 @@ class GenerateUrl extends Component{
     for(var i = 0; i < 3; i++){
       await this.generateShortUrl();
     }
+    index = 1;
   }
 
   setUserProps = async (result) => {
@@ -127,7 +133,6 @@ class GenerateUrl extends Component{
       branchUniversalObject3.metadata.first_player_rps_type = 'scissors'
     }
     if(this.props.startedFromURL){
-      console.log('funkar');
       branchUniversalObject1.contentDescription = result.name + ' have responded, click on the link to see the result!'
       branchUniversalObject2.contentDescription = result.name + ' have responded, click on the link to see the result!'
       branchUniversalObject3.contentDescription = result.name + ' have responded, click on the link to see the result!'
@@ -152,22 +157,26 @@ class GenerateUrl extends Component{
     } else {
       console.log('Success fetching data: ' + result.toString());
       console.log(JSON.stringify(result));
-
-
-      await this.setUserProps(result).then(() => this.cycleGenerateUrls()).then(() => this.props.generatedUrls(this.state.urlArray))
+      await this.resetComponent().then(await this.setUserProps(result)).then(await this.cycleGenerateUrls()).then(() => this.props.generatedUrls(urlArray)).then(() => this.clearUrl())
     }
   }
   addResult(type, slug, payload) {
     let result = { type, slug, payload }
-    this.setState({
-      results: [result, ...this.state.results].slice(0, 10)
-    })
+    // this.setState({
+    //   results: [result, ...this.state.results].slice(0, 10)
+    // })
   }
+  clearUrl(){
+    urlArray = [];
+  }
+
   generateUrlArray(payload){
     let result = {payload}
-    this.setState({
-      urlArray: [result, ...this.state.urlArray]
-    })
+    // this.setState({
+    //   urlArray: [result, ...this.state.urlArray]
+    // })
+    // urlArray = [result, ...urlArray]
+    urlArray.push(result);
   }
   render(){
     return(

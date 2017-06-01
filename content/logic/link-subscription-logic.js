@@ -99,13 +99,11 @@ class LinkSubscription extends Component{
           }
         }else{
           console.log(params);
-          this.props.opponentsData(null);
           this.props.startedFromURL(false);
           console.log('It\'s a new session after link/link-subscription');
         }
       });
       }else{
-        this.props.opponentsData(null);
         this.props.startedFromURL(false);
         console.log('It\'s a brand new session/link-subscription');
       }
