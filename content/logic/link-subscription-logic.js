@@ -27,6 +27,7 @@ class LinkSubscription extends Component{
           console.error("Error from Branch: " + error)
           return
         }else if(params.first_player_name){
+          this.props.activeBranchParams({params});
           console.info("Received link response from Branch");
           console.log(params);
           //Function for checking if app was started by URL or not.
