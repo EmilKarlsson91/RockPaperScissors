@@ -121,14 +121,6 @@ class App extends Component{
         <View style={{flexDirection: 'row'}}>
           <MessengerBtn />
           <FacebookLoginBtn/>
-<<<<<<< HEAD
-=======
-          {/* <TouchableNativeFeedback onPress={() => {this.restart()}}>
-            <Text style={{marginTop: 150, backgroundColor: '#0083ff', borderWidth: 1, borderRadius: 2, borderColor: '#0083ff', color: 'white'}}>
-              Restart
-            </Text>
-          </TouchableNativeFeedback> */}
->>>>>>> 1bf2377de8c9a674c05e79ec436509c25faa4eb3
         </View>
       </View>
     );
