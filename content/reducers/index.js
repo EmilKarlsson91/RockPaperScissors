@@ -5,7 +5,7 @@ import ActiveBranchParamsReducer from './branch-params-reducer';
 import UrlReducers from './url-reducers';
 import RPSResultReducer from './rps-result';
 import LoggedInReducer from './logged-in-reducer';
-import OpponentsDataReducer from './opponents-choice-reducers';
+import OpponentsDataReducer from './opponents-data-reducers';
 import StartedFromURLReducer from './started-from-url-reducers';
 
 const allReducers = combineReducers({

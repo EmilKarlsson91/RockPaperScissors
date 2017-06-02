@@ -26,7 +26,7 @@ export const opponentsData = (opponentsData) => {
   console.log('OPPONENTS_DATA')
   console.log(JSON.stringify(opponentsData))
   return{
-    type: 'OPPONENTS_CHOICE',
+    type: 'OPPONENTS_DATA',
     payload: opponentsData
   }
 };

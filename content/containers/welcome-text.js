@@ -8,20 +8,16 @@ import {
 
 class WelcomeText extends Component {
 
-  // state = {
-  //   params: this.props.activeBranchParams
-  // }
-
     _chooseText(){
-      if(this.props.activeBranchParams){
-        console.log('fån text: ' + this.props.activeBranchParams)
-       if(this.props.activeBranchParams.params.second_player_name){
+      if(this.props.activeBranchParamsReducer){
+        console.log('fån text: ' + this.props.activeBranchParamsReducer)
+       if(this.props.activeBranchParamsReducer.params.second_player_name){
            return('Results:');
-        }else if(this.props.activeBranchParams.params.first_player_name){
+        }else if(this.props.activeBranchParamsReducer.params.first_player_name){
           return(
             <Text>
               Now playing against:
-              {'\n' + this.props.activeBranchParams.params.first_player_name}
+              {'\n' + this.props.activeBranchParamsReducer.params.first_player_name}
             </Text>
           );
         }else{
@@ -55,7 +51,7 @@ class WelcomeText extends Component {
 function mapStateToProps(state){
   return{
     opponentsDataReducer: state.opponentsDataReducer,
-    activeBranchParams: state.activeBranchParams
+    activeBranchParamsReducer: state.activeBranchParamsReducer
   };
 }
 

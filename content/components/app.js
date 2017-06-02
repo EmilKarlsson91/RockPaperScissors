@@ -25,7 +25,7 @@ import MessengerBtn from '../containers/messenger-send-button';
 import FacebookLoginBtn from '../containers/facebook-login-button';
 import RNRestart from 'react-native-restart';
 import LinkSubscription from '../logic/link-subscription-logic';
-import {opponentsData, setStartedFromURL, generatedUrls, selectedRPS} from '../actions';
+import {opponentsData, setStartedFromURL, generatedUrls, selectedRPS, activeBranchParams} from '../actions';
 import WelcomeText from '../containers/welcome-text';
 
 var num = 0;
@@ -47,22 +47,36 @@ class App extends Component{
   }
 
   shouldComponentGenerateUrl(){
-    console.log('Started from url value/app');
-    console.log(this.props.startedFromURLReducer);
     if(AppState.currentState === 'active'){
       console.log('Running shouldComponentGenerateUrl/app')
-      if(num2 < 1 && this.props.loggedInReducer){
-        num2++;
-        if(this.props.startedFromURLReducer === null && !this.props.opponentsDataReducer){
-          return (<Text></Text>);
-        }else{
-          console.log('Generating url/app');
-          console.log('Number two/app' + num2);
+      console.log('Logged in: ' + this.props.loggedInReducer);
+      console.log(this.props.opponentsDataReducer);
+      if(this.props.startedFromURLReducer === true && this.props.opponentsDataReducer){
+        console.log('Running one time/app');
+        if(num2 < 1 && this.props.loggedInReducer){
+          console.log('Generating response url/app');
+          console.log('Number two/app: ' + num2);
+          num2++;
           return (<GenerateUrl/>);
+        }else{
+          console.log('Dont generate url/app');
+          return (<Text></Text>);
         }
-      }else{
-        return (<Text></Text>);
+      }else if(this.props.startedFromURLReducer === false){
+        console.log('Running one time/app');
+        if(num2 < 1 && this.props.loggedInReducer){
+          console.log('Generating new url/app');
+          console.log('Number two/app: ' + num2);
+          num2++;
+          return (<GenerateUrl/>);
+        }else{
+          console.log('Dont generate url/app');
+          return (<Text></Text>);
+        }
       }
+    }else{
+      console.log('Did not generate URL/app');
+      return (<Text></Text>);
     }
   }
   shouldComonentSubscribeToLink(){
@@ -96,15 +110,19 @@ class App extends Component{
     resetStates = async () => {
       this.props.generatedUrls(null);
       this.props.opponentsData(null);
+      this.props.activeBranchParams(null);
+      this.props.selectedRPS(null);
+      num2 = 0;
+      console.log('Cleaning opponents data: ' + this.props.opponentsDataReducer);
     }
-    restartCall(){
+    restartCall = async () => {
       RNRestart.Restart()
+      console.log('Restart successfull');
     }
 
     restart = async () => {
-        num2 = 0;
-        await this.resetStates().then(() => this.restartCall());
-        console.log('Restart successfull');
+        num = 0;
+        await this.resetStates().then(await this.restartCall());
     }
 
   render(){
@@ -138,6 +156,7 @@ function mapStateToProps(state){
 
 function matchdispatchToProps(dispatch){
   return bindActionCreators({
+    activeBranchParams: activeBranchParams,
     setStartedFromURL: setStartedFromURL,
     opponentsData: opponentsData,
     generatedUrls: generatedUrls,
