@@ -79,11 +79,11 @@ class GenerateUrl extends Component{
 
   createBranchUniversalObject = async () => {
     if(index === 1){
-      branchUniversalObjectTemp = branchUniversalObject3
+      branchUniversalObjectTemp = branchUniversalObject1
     }else if (index === 2){
       branchUniversalObjectTemp = branchUniversalObject2
     }else{
-      branchUniversalObjectTemp = branchUniversalObject1
+      branchUniversalObjectTemp = branchUniversalObject3
     }
     try {
       let result = await branch.createBranchUniversalObject('abc', branchUniversalObjectTemp)
