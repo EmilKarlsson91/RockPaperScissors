@@ -25,7 +25,7 @@ import MessengerBtn from '../containers/messenger-send-button';
 import FacebookLoginBtn from '../containers/facebook-login-button';
 import RNRestart from 'react-native-restart';
 import LinkSubscription from '../logic/link-subscription-logic';
-import {opponentsData, startedFromURL, generatedUrls, selectedRPS} from '../actions';
+import {opponentsData, setStartedFromURL, generatedUrls, selectedRPS} from '../actions';
 import WelcomeText from '../containers/welcome-text';
 
 var num = 0;
@@ -33,10 +33,6 @@ var num2 = 0;
 
 class App extends Component{
 
-  // constructor(props){
-  //   super(props);
-  //
-  // }
   state = {
       appState: AppState.currentState,
       shouldComponentRestart: false,
@@ -51,11 +47,13 @@ class App extends Component{
   }
 
   shouldComponentGenerateUrl(){
+    console.log('Started from url value/app');
+    console.log(this.props.startedFromURLReducer);
     if(AppState.currentState === 'active'){
       console.log('Running shouldComponentGenerateUrl/app')
-      if(num2 < 1 && this.props.loggedIn){
+      if(num2 < 1 && this.props.loggedInReducer){
         num2++;
-        if(this.props.startedFromURL && !this.props.opponentsData){
+        if(this.props.startedFromURLReducer === null && !this.props.opponentsDataReducer){
           return (<Text></Text>);
         }else{
           console.log('Generating url/app');
@@ -132,15 +130,15 @@ function mapStateToProps(state){
     rpsReducers: state.rpsReducers,
     activeRPSReducer: state.activeRPSReducer,
     urlReducers: state.urlReducers,
-    loggedIn: state.loggedIn,
-    startedFromURL: state.startedFromURL,
-    opponentsData: state.opponentsData
+    loggedInReducer: state.loggedInReducer,
+    startedFromURLReducer: state.startedFromURLReducer,
+    opponentsDataReducer: state.opponentsDataReducer
   };
 }
 
 function matchdispatchToProps(dispatch){
   return bindActionCreators({
-    startedFromURL: startedFromURL,
+    setStartedFromURL: setStartedFromURL,
     opponentsData: opponentsData,
     generatedUrls: generatedUrls,
     selectedRPS: selectedRPS

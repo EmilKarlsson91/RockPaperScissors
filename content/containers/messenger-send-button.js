@@ -17,10 +17,7 @@ class MessengerBtn extends Component {
   }
 
   sendButtonActiveate(){
-    if(this.props.loggedIn && this.props.activeRPSReducer){
-      console.log('Active RPS/MessengerBtn');
-      console.log(this.props.startedFromURL);
-      console.log(this.props.opponentsData)
+    if(this.props.loggedInReducer && this.props.activeRPSReducer){
       this.state.shareContent = {
           contentType: 'link',
           contentUrl: this.props.activeRPSReducer.url
@@ -53,9 +50,9 @@ function mapStateToProps(state){
   return {
     activeRPSReducer: state.activeRPSReducer,
     urlReducers: state.urlReducers,
-    loggedIn: state.loggedIn,
-    opponentsData: state.opponentsData,
-    startedFromURL: state.startedFromURL
+    loggedInReducer: state.loggedInReducer,
+    opponentsDataReducer: state.opponentsDataReducer,
+    startedFromURLReducer: state.startedFromURLReducer
   };
 }
 

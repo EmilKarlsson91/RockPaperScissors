@@ -71,7 +71,7 @@ class FacebookLoginBtn extends Component {
 
 function mapStateToProps(state){
   return{
-    loggedIn: state.loggedIn
+    loggedInReducer: state.loggedInReducer
   };
 }
 

@@ -16,7 +16,7 @@ export const generatedUrls = (currentUrls) => {
 };
 export const loggedIn = (loggedIn) => {
   console.log('LOGGED_IN')
-  console.log(JSON.stringify(loggedIn))
+  console.log(loggedIn)
   return{
     type: 'LOGGED_IN',
     payload: loggedIn
@@ -30,12 +30,12 @@ export const opponentsData = (opponentsData) => {
     payload: opponentsData
   }
 };
-export const startedFromURL = (startedFromURL) => {
-  console.log( 'STARTED_FROM_URL')
-  console.log(JSON.stringify(startedFromURL))
+export const setStartedFromURL = (setStartedFromURL) => {
+  console.log('STARTED_FROM_URL')
+  console.log(setStartedFromURL)
   return{
-    type:  'STARTED_FROM_URL',
-    payload: startedFromURL
+    type: 'STARTED_FROM_URL',
+    payload: setStartedFromURL
   }
 };
 export const activeBranchParams = (activeBranchParams) => {

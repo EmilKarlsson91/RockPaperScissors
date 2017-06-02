@@ -41,7 +41,7 @@ class GenerateUrl extends Component{
       if (this.buo) this.buo.release()
       tempBranchUniversalObject1 = {
         title: 'Rock Paper Scissors',
-        contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
+        contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/branch.io/content/resources/RPSBattle.jpg?raw=true',
         contentDescription: '',
         metadata: {
           first_player_name: '',
@@ -52,7 +52,7 @@ class GenerateUrl extends Component{
       }
       tempBranchUniversalObject2 = {
         title: 'Rock Paper Scissors',
-        contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
+        contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/branch.io/content/resources/RPSBattle.jpg?raw=true',
         contentDescription: '',
         metadata: {
           first_player_name: '',
@@ -63,7 +63,7 @@ class GenerateUrl extends Component{
       }
       tempBranchUniversalObject3 = {
         title: 'Rock Paper Scissors',
-        contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/master/content/resources/RPSBattle.jpg?raw=true',
+        contentImageUrl: 'https://github.com/EmilKarlsson91/RockPaperScissors/blob/branch.io/content/resources/RPSBattle.jpg?raw=true',
         contentDescription: '',
         metadata: {
           first_player_name: '',
@@ -121,7 +121,7 @@ class GenerateUrl extends Component{
   }
 
   setUserProps = async (result) => {
-    if(!this.props.startedFromURL){
+    if(!this.props.startedFromURLReducer){
       branchUniversalObject1.contentDescription = result.name + ' have challanged you to play a game of Rock Paper Scissors, do you dare?'
       branchUniversalObject2.contentDescription = result.name + ' have challanged you to play a game of Rock Paper Scissors, do you dare?'
       branchUniversalObject3.contentDescription = result.name + ' have challanged you to play a game of Rock Paper Scissors, do you dare?'
@@ -132,22 +132,22 @@ class GenerateUrl extends Component{
       branchUniversalObject2.metadata.first_player_rps_type = 'paper'
       branchUniversalObject3.metadata.first_player_rps_type = 'scissors'
     }
-    if(this.props.startedFromURL){
+    if(this.props.startedFromURLReducer){
       branchUniversalObject1.contentDescription = result.name + ' have responded, click on the link to see the result!'
       branchUniversalObject2.contentDescription = result.name + ' have responded, click on the link to see the result!'
       branchUniversalObject3.contentDescription = result.name + ' have responded, click on the link to see the result!'
       branchUniversalObject1.metadata.second_player_name = result.name
       branchUniversalObject2.metadata.second_player_name = result.name
       branchUniversalObject3.metadata.second_player_name = result.name
-      branchUniversalObject1.metadata.first_player_name = this.props.opponentsData.name
-      branchUniversalObject2.metadata.first_player_name = this.props.opponentsData.name
-      branchUniversalObject3.metadata.first_player_name = this.props.opponentsData.name
+      branchUniversalObject1.metadata.first_player_name = this.props.opponentsDataReducer.name
+      branchUniversalObject2.metadata.first_player_name = this.props.opponentsDataReducer.name
+      branchUniversalObject3.metadata.first_player_name = this.props.opponentsDataReducer.name
       branchUniversalObject1.metadata.second_player_rps_type = 'rock'
       branchUniversalObject2.metadata.second_player_rps_type = 'paper'
       branchUniversalObject3.metadata.second_player_rps_type = 'scissors'
-      branchUniversalObject1.metadata.first_player_rps_type = this.props.opponentsData.rps
-      branchUniversalObject2.metadata.first_player_rps_type = this.props.opponentsData.rps
-      branchUniversalObject3.metadata.first_player_rps_type = this.props.opponentsData.rps
+      branchUniversalObject1.metadata.first_player_rps_type = this.props.opponentsDataReducer.rps
+      branchUniversalObject2.metadata.first_player_rps_type = this.props.opponentsDataReducer.rps
+      branchUniversalObject3.metadata.first_player_rps_type = this.props.opponentsDataReducer.rps
     }
   }
   finishedGeneratingUrls = async (error: ?Object, result: ?Object) => {
@@ -188,8 +188,8 @@ class GenerateUrl extends Component{
 function mapStateToProps(state){
   return{
     urlReducers: state.urlReducers,
-    opponentsData: state.opponentsData,
-    startedFromURL: state.startedFromURL
+    opponentsDataReducer: state.opponentsDataReducer,
+    startedFromURLReducer: state.startedFromURLReducer
   };
 }
 

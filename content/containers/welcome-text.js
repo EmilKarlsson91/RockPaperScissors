@@ -54,7 +54,7 @@ class WelcomeText extends Component {
 
 function mapStateToProps(state){
   return{
-    opponentsData: state.opponentsData,
+    opponentsDataReducer: state.opponentsDataReducer,
     activeBranchParams: state.activeBranchParams
   };
 }

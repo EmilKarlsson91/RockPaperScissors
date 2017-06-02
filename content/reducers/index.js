@@ -1,22 +1,22 @@
 import { combineReducers } from 'redux';
 import RPSReducers from './rps-reducers';
 import ActiveRPSReducer from './active-rps-reducer';
-import ActiveBranchParams from './branch-params-reducer';
+import ActiveBranchParamsReducer from './branch-params-reducer';
 import UrlReducers from './url-reducers';
-import RPSResult from './rps-result';
-import LoggedIn from './logged-in-reducer';
-import OpponentsData from './opponents-choice-reducers';
-import StartedFromURL from './started-from-url-reducers';
+import RPSResultReducer from './rps-result';
+import LoggedInReducer from './logged-in-reducer';
+import OpponentsDataReducer from './opponents-choice-reducers';
+import StartedFromURLReducer from './started-from-url-reducers';
 
 const allReducers = combineReducers({
   rpsReducers: RPSReducers,
-  rpsResult: RPSResult,
+  rpsResultReducer: RPSResultReducer,
   activeRPSReducer: ActiveRPSReducer,
-  activeBranchParams: ActiveBranchParams,
+  activeBranchParamsReducer: ActiveBranchParamsReducer,
   urlReducers: UrlReducers,
-  loggedIn: LoggedIn,
-  opponentsData: OpponentsData,
-  startedFromURL: StartedFromURL
+  loggedInReducer: LoggedInReducer,
+  opponentsDataReducer: OpponentsDataReducer,
+  startedFromURLReducer: StartedFromURLReducer
 });
 
 export default allReducers;

@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {opponentsData, startedFromURL, generatedUrls, selectedRPS, activeBranchParams} from '../actions';
+import {opponentsData, setStartedFromURL, generatedUrls, selectedRPS, activeBranchParams} from '../actions';
 import branch from 'react-native-branch';
 
 
@@ -31,22 +31,22 @@ class LinkSubscription extends Component{
           console.info("Received link response from Branch");
           console.log(params);
           //Function for checking if app was started by URL or not.
-          this.props.startedFromURL(true);
+          this.props.setStartedFromURL(true);
           if(params.second_player_name != ""){
             switch(params.first_player_rps_type){
               case 'rock':
               //Second player
               switch(params.second_player_rps_type){
                 case 'rock':
-                this.props.selectedRPS(this.props.rpsResult[2]);
+                this.props.selectedRPS(this.props.rpsResultReducer[2]);
                 this.props.activeBranchParams({params, result: 'played equal'});
                 break;
                 case 'paper':
-                  this.props.selectedRPS(this.props.rpsResult[0]);
+                  this.props.selectedRPS(this.props.rpsResultReducer[0]);
                   this.props.activeBranchParams({params, result: 'lost'});
                 break;
                 case 'scissors':
-                  this.props.selectedRPS(this.props.rpsResult[7]);
+                  this.props.selectedRPS(this.props.rpsResultReducer[7]);
                   this.props.activeBranchParams({params, result: 'won'});
                 break;
               }
@@ -55,15 +55,15 @@ class LinkSubscription extends Component{
               //Second player
               switch(params.second_player_rps_type){
                 case 'rock':
-                  this.props.selectedRPS(this.props.rpsResult[1]);
+                  this.props.selectedRPS(this.props.rpsResultReducer[1]);
                   this.props.activeBranchParams({params, result: 'won'});
                 break;
                 case 'paper':
-                this.props.selectedRPS(this.props.rpsResult[5]);
+                this.props.selectedRPS(this.props.rpsResultReducer[5]);
                 this.props.activeBranchParams({params, result: 'played equal'});
                 break;
                 case 'scissors':
-                  this.props.selectedRPS(this.props.rpsResult[3]);
+                  this.props.selectedRPS(this.props.rpsResultReducer[3]);
                   this.props.activeBranchParams({params, result: 'lost'});
                 break;
               }
@@ -72,15 +72,15 @@ class LinkSubscription extends Component{
               //Second player
               switch(params.second_player_rps_type){
                 case 'rock':
-                  this.props.selectedRPS(this.props.rpsResult[6]);
+                  this.props.selectedRPS(this.props.rpsResultReducer[6]);
                   this.props.activeBranchParams({params, result: 'lost'});
                 break;
                 case 'paper':
-                  this.props.selectedRPS(this.props.rpsResult[4]);
+                  this.props.selectedRPS(this.props.rpsResultReducer[4]);
                   this.props.activeBranchParams({params, result: 'won'});
                 break;
                 case 'scissors':
-                  this.props.selectedRPS(this.props.rpsResult[8]);
+                  this.props.selectedRPS(this.props.rpsResultReducer[8]);
                   this.props.activeBranchParams({params, result: 'played equal'});
                 break;
               }
@@ -100,12 +100,12 @@ class LinkSubscription extends Component{
           }
         }else{
           console.log(params);
-          this.props.startedFromURL(false);
+          this.props.setStartedFromURL(false);
           console.log('It\'s a new session after link/link-subscription');
         }
       });
       }else{
-        this.props.startedFromURL(false);
+        this.props.setStartedFromURL(false);
         console.log('It\'s a brand new session/link-subscription');
       }
     });
@@ -119,19 +119,19 @@ class LinkSubscription extends Component{
 
 function mapStateToProps(state){
   return {
-    rpsResult: state.rpsResult,
+    rpsResultReducer: state.rpsResultReducer,
     activeRPSReducer: state.activeRPSReducer,
-    activeBranchParams: state.activeBranchParams,
+    activeBranchParamsReducer: state.activeBranchParamsReducer,
     urlReducers: state.urlReducers,
     loggedIn: state.loggedIn,
-    startedFromURL: state.startedFromURL,
-    opponentsData: state.opponentsData
+    startedFromURLReducer: state.startedFromURLReducer,
+    opponentsDataReducer: state.opponentsDataReducer
   };
 }
 
 function matchdispatchToProps(dispatch){
   return bindActionCreators({
-    startedFromURL: startedFromURL,
+    setStartedFromURL: setStartedFromURL,
     opponentsData: opponentsData,
     generatedUrls: generatedUrls,
     selectedRPS: selectedRPS,
